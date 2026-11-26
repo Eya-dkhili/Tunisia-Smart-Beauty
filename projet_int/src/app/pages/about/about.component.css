@@ -1,0 +1,481 @@
+:host {
+  display: block;
+  background: #fffdfb;
+  color: #493b43;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  min-height: 76px;
+  padding: 15px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: white;
+  box-shadow: 0 3px 20px rgba(80, 48, 62, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+.logo,
+.footer-logo {
+  text-decoration: none;
+  color: #493b43;
+  font-family: Georgia, serif;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.logo span:last-child {
+  color: #b66d8b;
+}
+
+.logo-icon {
+  color: #bd7893;
+  margin-right: 5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #75666e;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #b66d8b;
+}
+
+.nav-links a.active {
+  font-weight: bold;
+}
+
+.login-btn {
+  text-decoration: none;
+  background: #b66d8b;
+  color: white;
+  padding: 11px 23px;
+  border-radius: 25px;
+  font-size: 14px;
+}
+
+/* Hero */
+.hero {
+  min-height: 400px;
+  padding: 70px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(120deg, #f9e9ed, #fdf5ed);
+  overflow: hidden;
+}
+
+.hero-content {
+  max-width: 650px;
+}
+
+.eyebrow {
+  color: #b66d8b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.2;
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+.hero h1 span,
+.presentation-content h2 span,
+.mission-content h2 span,
+.section-heading h2 span {
+  color: #b66d8b;
+}
+
+.hero p {
+  color: #82737a;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+.primary-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 25px;
+  background: #b66d8b;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.primary-btn:hover,
+.cta-btn:hover {
+  background: #96536f;
+  transform: translateY(-2px);
+}
+
+.hero-decoration {
+  width: 280px;
+  height: 280px;
+  border: 2px solid rgba(182, 109, 139, 0.2);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  margin-right: 5%;
+}
+
+.hero-decoration span {
+  font-size: 150px;
+  color: rgba(182, 109, 139, 0.4);
+}
+
+.decoration-circle {
+  position: absolute;
+  width: 80px;
+  height: 80px;
+  background: rgba(182, 109, 139, 0.13);
+  border-radius: 50%;
+  top: 10px;
+  right: -10px;
+}
+
+/* Présentation */
+.presentation-section {
+  padding: 90px 9%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  gap: 65px;
+}
+
+.presentation-image {
+  height: 390px;
+  overflow: hidden;
+  border-radius: 20px;
+  box-shadow: 15px 15px 0 #f5e5ea;
+}
+
+.presentation-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.presentation-content h2,
+.mission-content h2 {
+  font-family: Georgia, serif;
+  font-size: 38px;
+  line-height: 1.3;
+  font-weight: 500;
+  margin: 18px 0;
+}
+
+.presentation-content p,
+.mission-content p {
+  color: #82737a;
+  line-height: 1.9;
+  font-size: 14px;
+  margin-bottom: 15px;
+}
+
+/* Mission */
+.mission-section {
+  padding: 75px 10%;
+  text-align: center;
+  background: #fcf3f5;
+}
+
+.mission-content {
+  max-width: 750px;
+  margin: auto;
+}
+
+.mission-content h2 {
+  font-size: 40px;
+}
+
+/* Objectifs */
+.objectifs-section,
+.fonctionnement-section,
+.advantages-section {
+  padding: 80px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 45px;
+}
+
+.section-heading h2 {
+  font-family: Georgia, serif;
+  font-size: 38px;
+  font-weight: 500;
+  margin: 15px 0;
+}
+
+.section-heading p {
+  color: #82737a;
+  line-height: 1.8;
+  font-size: 14px;
+}
+
+.objectifs-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 25px;
+}
+
+.objectif-card {
+  padding: 30px 25px;
+  background: white;
+  border: 1px solid #f1e6e9;
+  border-radius: 18px;
+  box-shadow: 0 8px 25px rgba(80, 48, 62, 0.05);
+  transition: 0.3s;
+}
+
+.objectif-card:hover {
+  transform: translateY(-6px);
+}
+
+.card-icon {
+  width: 55px;
+  height: 55px;
+  background: #f9e9ed;
+  border-radius: 15px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 25px;
+  margin-bottom: 20px;
+}
+
+.objectif-card h3,
+.step h3,
+.advantage-card h3 {
+  font-family: Georgia, serif;
+  font-size: 20px;
+  font-weight: 500;
+  margin-bottom: 12px;
+}
+
+.objectif-card p,
+.step p,
+.advantage-card p {
+  color: #82737a;
+  font-size: 14px;
+  line-height: 1.8;
+}
+
+/* Fonctionnement */
+.fonctionnement-section {
+  background: #fffaf8;
+}
+
+.steps {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 35px;
+  text-align: center;
+}
+
+.step {
+  padding: 20px;
+}
+
+.step-number {
+  width: 65px;
+  height: 65px;
+  margin: 0 auto 20px;
+  border-radius: 50%;
+  background: #f5e5ea;
+  color: #a15f7b;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: Georgia, serif;
+  font-size: 23px;
+}
+
+/* Avantages */
+.advantages-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.advantage-card {
+  display: flex;
+  align-items: flex-start;
+  gap: 18px;
+  padding: 25px;
+  border: 1px solid #f1e6e9;
+  border-radius: 16px;
+  background: white;
+}
+
+.advantage-icon {
+  width: 48px;
+  height: 48px;
+  flex-shrink: 0;
+  border-radius: 14px;
+  background: #f9e9ed;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+}
+
+.advantage-card h3 {
+  margin-top: 3px;
+}
+
+/* CTA */
+.cta-section {
+  margin: 15px 8% 70px;
+  padding: 55px 25px;
+  text-align: center;
+  border-radius: 22px;
+  background: linear-gradient(120deg, #f7e6eb, #fdf2e9);
+}
+
+.cta-section h2 {
+  font-family: Georgia, serif;
+  font-size: 34px;
+  font-weight: 500;
+  margin: 15px 0;
+}
+
+.cta-section p {
+  color: #82737a;
+  font-size: 14px;
+  margin-bottom: 25px;
+}
+
+.cta-btn {
+  display: inline-block;
+  text-decoration: none;
+  background: #b66d8b;
+  color: white;
+  padding: 14px 25px;
+  border-radius: 30px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* Footer */
+.footer {
+  background: #493b43;
+  color: #f8eaf0;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+.footer-logo {
+  color: #f8eaf0;
+}
+
+.footer p {
+  color: #ddcbd3;
+  font-size: 14px;
+  margin: 12px 0;
+}
+
+.footer span {
+  color: #c9b4be;
+  font-size: 12px;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .hero-decoration {
+    display: none;
+  }
+
+  .presentation-section {
+    grid-template-columns: 1fr;
+    gap: 35px;
+  }
+
+  .objectifs-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .steps {
+    grid-template-columns: 1fr;
+    gap: 15px;
+  }
+}
+
+@media (max-width: 600px) {
+  .hero {
+    padding: 55px 7%;
+  }
+
+  .presentation-section,
+  .objectifs-section,
+  .fonctionnement-section,
+  .advantages-section {
+    padding: 55px 6%;
+  }
+
+  .presentation-image {
+    height: 270px;
+  }
+
+  .presentation-content h2,
+  .mission-content h2,
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .advantages-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .cta-section {
+    margin: 10px 5% 45px;
+    padding: 35px 20px;
+  }
+
+  .cta-section h2 {
+    font-size: 27px;
+  }
+
+  .navbar {
+    padding: 15px 5%;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+}

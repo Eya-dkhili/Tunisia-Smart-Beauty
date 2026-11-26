@@ -1,0 +1,130 @@
+
+<div class="login-page">
+
+  <a routerLink="/accueil" class="back-home">
+    ← Retour à l'accueil
+  </a>
+
+  <div class="login-container">
+
+    <!-- LEFT SIDE -->
+    <div class="login-visual">
+
+      <a routerLink="/accueil" class="brand">
+        <span>✿</span> Tunisia <strong>Smart Beauty</strong>
+      </a>
+
+      <div class="visual-content">
+        <span class="visual-label">YOUR BEAUTY, YOUR MOMENT</span>
+
+        <h1>La beauté<br>commence par<br><span>vous.</span></h1>
+
+        <p>
+          Retrouvez vos salons préférés et profitez
+          d'un moment de beauté rien que pour vous.
+        </p>
+
+        <div class="visual-flower">✿</div>
+      </div>
+
+      <div class="visual-footer">
+        BEAUTÉ · BIEN-ÊTRE · CONFIANCE
+      </div>
+
+    </div>
+
+    <!-- RIGHT SIDE -->
+    <div class="login-form-side">
+
+      <div class="form-content">
+
+        <div class="mobile-brand">
+          ✿ Tunisia <strong>Smart Beauty</strong>
+        </div>
+
+        <span class="welcome-label">BON RETOUR !</span>
+
+        <h2>Connexion</h2>
+
+        <p class="form-description">
+          Connectez-vous pour retrouver votre espace beauté.
+        </p>
+
+        <form (ngSubmit)="connecter()" #loginForm="ngForm">
+
+          <div class="form-group">
+            <label>Adresse email</label>
+
+            <div class="input-wrapper">
+              <span>✉</span>
+
+              <input
+                type="email"
+                name="email"
+                [(ngModel)]="email"
+                placeholder="exemple@email.com"
+                required
+                email
+              >
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label>Mot de passe</label>
+
+            <div class="input-wrapper">
+              <span>♙</span>
+
+              <input
+                [type]="afficherPassword ? 'text' : 'password'"
+                name="password"
+                [(ngModel)]="password"
+                placeholder="Votre mot de passe"
+                required
+              >
+
+              <button
+                type="button"
+                class="show-password"
+                (click)="afficherPassword = !afficherPassword">
+                {{ afficherPassword ? 'Masquer' : 'Afficher' }}
+              </button>
+            </div>
+          </div>
+          <p *ngIf="messageErreur" class="error-message">
+  {{ messageErreur }}
+</p>
+
+<button
+  type="submit"
+  class="login-button"
+  [disabled]="!loginForm.valid || chargement">
+
+  {{ chargement ? 'Connexion en cours...' : 'Se connecter' }}
+  <span>→</span>
+
+</button>
+
+        </form>
+
+        <div class="separator">
+          <span>BIENVENUE CHEZ NOUS</span>
+        </div>
+
+        <p class="register-text">
+          Vous n'avez pas encore de compte ?
+          <a routerLink="/register">Créer un compte</a>
+        </p>
+
+        <a routerLink="/salons" class="discover-link">
+          Découvrir nos salons →
+        </a>
+
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+

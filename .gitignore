@@ -1,0 +1,36 @@
+
+# Dependencies
+**/node_modules/
+
+# Angular generated files
+**/.angular/
+**/dist/
+**/coverage/
+
+# Java / Spring Boot
+**/target/
+**/build/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Local configuration
+**/application-local.properties
+**/application-secret.properties
+
+# IDE
+**/.idea/
+**/.settings/
+**/.classpath
+**/.project
+
+# Logs and temporary files
+*.log
+*.tmp
+
+# Operating system
+.DS_Store
+Thumbs.db
+desktop.ini

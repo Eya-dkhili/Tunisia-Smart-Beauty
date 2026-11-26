@@ -1,0 +1,372 @@
+
+<div class="client-page">
+
+  <!-- NAVBAR -->
+  <header class="navbar">
+
+    <a routerLink="/accueil" class="logo">
+      <span class="logo-icon">✿</span>
+      Tunisia <strong>Smart Beauty</strong>
+    </a>
+
+    <div class="nav-actions">
+      <a routerLink="/accueil" class="home-link">
+        <span>⌂</span> Accueil
+      </a>
+
+      <button class="logout-btn" (click)="deconnexion()">
+        <span>↪</span> Déconnexion
+      </button>
+    </div>
+
+  </header>
+
+  <!-- CONTENU PRINCIPAL -->
+  <div class="dashboard-container">
+
+    <!-- SIDEBAR -->
+    <aside class="sidebar">
+
+      <div class="profile-card">
+
+        <div class="avatar">
+          {{ nomComplet.charAt(0).toUpperCase() }}
+        </div>
+
+        <h3>{{ nomComplet }}</h3>
+        <p>Client(e)</p>
+
+      </div>
+
+      <div class="sidebar-menu">
+
+        <a href="#dashboard" class="menu-item active">
+          <span>▦</span>
+          Tableau de bord
+        </a>
+
+        <a href="#reservations" class="menu-item">
+          <span>▣</span>
+          Mes réservations
+        </a>
+
+        <a href="#historique" class="menu-item">
+          <span>◷</span>
+          Historique
+        </a>
+
+        <a routerLink="/salons" class="menu-item">
+          <span>✿</span>
+          Découvrir les salons
+        </a>
+
+      </div>
+
+      <div class="sidebar-bottom">
+        <p>Besoin d'un moment pour vous ?</p>
+        <a routerLink="/salons" class="discover-btn">
+          Réserver maintenant →
+        </a>
+      </div>
+
+    </aside>
+
+    <!-- DASHBOARD -->
+    <main class="main-content">
+
+      <!-- EN-TÊTE -->
+      <section class="welcome-section" id="dashboard">
+
+        <div>
+          <p class="welcome-label">MON ESPACE PERSONNEL</p>
+
+          <h1>
+            Bonjour, <span>{{ nomComplet }}</span> !
+          </h1>
+
+          <p class="welcome-description">
+            Retrouvez vos réservations et profitez de vos moments de beauté.
+          </p>
+        </div>
+
+        <div class="welcome-decoration">✿</div>
+
+      </section>
+
+      <!-- MESSAGES -->
+      <div class="alert alert-success" *ngIf="messageSucces">
+        ✓ {{ messageSucces }}
+      </div>
+
+      <div class="alert alert-error" *ngIf="messageErreur">
+        ⚠ {{ messageErreur }}
+      </div>
+
+      <!-- INFORMATIONS CLIENT -->
+      <section class="profile-info">
+
+        <div class="section-heading">
+          <div>
+            <h2>Mes informations</h2>
+            <p>Vos informations personnelles</p>
+          </div>
+        </div>
+
+        <div class="info-grid">
+
+          <div class="info-item">
+            <span class="info-icon">♙</span>
+            <div>
+              <small>Nom complet</small>
+              <strong>{{ nomComplet }}</strong>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-icon">✉</span>
+            <div>
+              <small>Adresse e-mail</small>
+              <strong>{{ utilisateur?.email || 'Non renseigné' }}</strong>
+            </div>
+          </div>
+
+          <div class="info-item">
+            <span class="info-icon">☎</span>
+            <div>
+              <small>Téléphone</small>
+              <strong>{{ utilisateur?.telephone || 'Non renseigné' }}</strong>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- STATISTIQUES -->
+      <section class="statistics-section">
+
+        <div class="section-heading">
+          <div>
+            <h2>Vue d'ensemble</h2>
+            <p>Un résumé de votre activité</p>
+          </div>
+        </div>
+
+        <div class="stats-grid">
+
+          <div class="stat-card">
+            <div class="stat-icon pink">▣</div>
+            <div>
+              <p>Total réservations</p>
+              <h3>{{ totalReservations }}</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon purple">◷</div>
+            <div>
+              <p>À venir</p>
+              <h3>{{ nombreAVenir }}</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon green">✓</div>
+            <div>
+              <p>Confirmées</p>
+              <h3>{{ nombreConfirmees }}</h3>
+            </div>
+          </div>
+
+          <div class="stat-card">
+            <div class="stat-icon orange">↶</div>
+            <div>
+              <p>Annulées</p>
+              <h3>{{ nombreAnnulees }}</h3>
+            </div>
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- RESERVATIONS A VENIR -->
+      <section class="reservations-section" id="reservations">
+
+        <div class="section-heading">
+          <div>
+            <h2>Mes prochaines réservations</h2>
+            <p>Vos rendez-vous à venir</p>
+          </div>
+
+          <a routerLink="/salons" class="add-reservation">
+            + Nouvelle réservation
+          </a>
+        </div>
+
+        <div class="loading" *ngIf="chargement">
+          <div class="spinner"></div>
+          <p>Chargement de vos réservations...</p>
+        </div>
+
+        <div class="empty-state"
+             *ngIf="!chargement && reservationsAVenir.length === 0">
+
+          <div class="empty-icon">♡</div>
+
+          <h3>Aucune réservation à venir</h3>
+
+          <p>
+            Vous n'avez pas encore de rendez-vous prévu.
+            Découvrez nos salons et prenez soin de vous !
+          </p>
+
+          <a routerLink="/salons" class="discover-btn">
+            Découvrir les salons
+          </a>
+
+        </div>
+
+        <div class="reservation-list"
+             *ngIf="!chargement && reservationsAVenir.length > 0">
+
+          <article class="reservation-card"
+                   *ngFor="let reservation of reservationsAVenir">
+
+            <div class="reservation-date">
+              <span class="calendar-icon">▣</span>
+
+              <div>
+                <strong>
+                  {{ reservation.dateReservation | date:'dd' }}
+                </strong>
+
+                <span>
+                  {{ reservation.dateReservation | date:'MMM yyyy' }}
+                </span>
+              </div>
+            </div>
+
+            <div class="reservation-details">
+
+              <h3>{{ reservation.prestation }}</h3>
+
+              <p class="salon-name">
+                ✿ {{ reservation.salon }}
+              </p>
+
+              <p class="reservation-time">
+                ◷ {{ reservation.heureReservation }}
+              </p>
+
+            </div>
+
+            <div class="reservation-price">
+              <strong>{{ reservation.prix }} DT</strong>
+              <span>Prix</span>
+            </div>
+
+            <div class="reservation-status">
+              <span
+                class="status"
+                [ngClass]="reservation.statut?.toLowerCase()">
+
+                {{ reservation.statut === 'EN_ATTENTE'
+                  ? 'En attente'
+                  : reservation.statut === 'CONFIRMEE'
+                    ? 'Confirmée'
+                    : reservation.statut }}
+
+              </span>
+
+              <button
+                class="cancel-btn"
+                *ngIf="peutAnnuler(reservation)"
+                [disabled]="annulationEnCours === reservation.id"
+                (click)="annulerReservation(reservation)">
+
+                {{ annulationEnCours === reservation.id
+                  ? 'Annulation...'
+                  : 'Annuler' }}
+
+              </button>
+            </div>
+
+          </article>
+
+        </div>
+
+      </section>
+
+      <!-- HISTORIQUE -->
+      <section class="history-section" id="historique">
+
+        <div class="section-heading">
+          <div>
+            <h2>Historique des réservations</h2>
+            <p>Consultez vos anciens rendez-vous</p>
+          </div>
+        </div>
+
+        <div class="empty-state small-empty"
+             *ngIf="!chargement && historique.length === 0">
+
+          <div class="empty-icon">◷</div>
+
+          <h3>Aucun historique disponible</h3>
+
+          <p>Vos anciennes réservations apparaîtront ici.</p>
+
+        </div>
+
+        <div class="history-list"
+             *ngIf="historique.length > 0">
+
+          <div class="history-item"
+               *ngFor="let reservation of historique">
+
+            <div class="history-icon">✿</div>
+
+            <div class="history-details">
+              <h3>{{ reservation.prestation }}</h3>
+
+              <p>{{ reservation.salon }}</p>
+
+              <small>
+                {{ reservation.dateReservation | date:'dd/MM/yyyy' }}
+                à {{ reservation.heureReservation }}
+              </small>
+            </div>
+
+            <div class="history-right">
+              <strong>{{ reservation.prix }} DT</strong>
+
+              <span
+                class="status"
+                [ngClass]="reservation.statut?.toLowerCase()">
+
+                {{ reservation.statut === 'ANNULEE'
+                  ? 'Annulée'
+                  : reservation.statut === 'TERMINEE'
+                    ? 'Terminée'
+                    : reservation.statut }}
+
+              </span>
+            </div>
+
+          </div>
+
+        </div>
+
+      </section>
+
+      <!-- FOOTER -->
+      <footer class="dashboard-footer">
+        <p>© 2026 Tunisia Smart Beauty - Tous droits réservés.</p>
+      </footer>
+
+    </main>
+
+  </div>
+
+</div>

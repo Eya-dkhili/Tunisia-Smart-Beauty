@@ -1,0 +1,272 @@
+
+<!-- NAVBAR -->
+<header class="navbar">
+
+  <a routerLink="/accueil" class="logo">
+    <span class="logo-icon">✿</span>
+    Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <nav>
+    <a routerLink="/accueil" class="active">Accueil</a>
+    <a routerLink="/salons">Nos salons</a>
+    <a href="#services">Nos services</a>
+    <a href="#about">À propos</a>
+  </nav>
+
+  <div class="nav-actions">
+
+    <!-- VISITEUR NON CONNECTÉ -->
+    <ng-container *ngIf="!utilisateur">
+
+      <a routerLink="/login" class="login-link">
+        Connexion
+      </a>
+
+      <a routerLink="/register" class="register-btn">
+        S'inscrire
+      </a>
+
+    </ng-container>
+
+    <!-- UTILISATEUR CONNECTÉ -->
+    <ng-container *ngIf="utilisateur">
+
+      <!-- ESPACE CLIENT -->
+      <a
+        *ngIf="estClient"
+        routerLink="/espace-client"
+        class="mon-espace-btn">
+        <span>♙</span>
+        Mon espace
+      </a>
+
+      <!-- DÉCONNEXION -->
+      <button
+        class="logout-btn"
+        (click)="deconnexion()">
+        Déconnexion
+      </button>
+
+    </ng-container>
+
+  </div>
+
+</header>
+
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">
+      <span class="eyebrow-line"></span>
+      BEAUTÉ · BIEN-ÊTRE · ÉLÉGANCE
+    </span>
+
+    <h1>
+      Prenez soin de vous,
+      <span>vous le méritez.</span>
+    </h1>
+
+    <p class="hero-description">
+      Découvrez les meilleurs salons de beauté en Tunisie.
+      Trouvez votre moment de détente et réservez votre
+      prochain rendez-vous en quelques clics.
+    </p>
+
+    <div class="hero-buttons">
+      <a routerLink="/salons" class="primary-btn">
+        Découvrir nos salons <span>→</span>
+      </a>
+      <a href="#services" class="secondary-btn">
+        Explorer les services
+      </a>
+    </div>
+
+    <div class="hero-note">
+      <span>✦</span>
+      Votre beauté, notre inspiration.
+    </div>
+  </div>
+
+  <div class="hero-visual">
+    <div class="hero-image">
+      <div class="image-caption">
+        <span>YOUR BEAUTY MOMENT</span>
+        <strong>Feel beautiful. Feel confident.</strong>
+      </div>
+    </div>
+
+    <div class="floating-card">
+      <span class="floating-icon">♡</span>
+      <div>
+        <strong>Un moment pour vous</strong>
+        <p>Beauté & bien-être</p>
+      </div>
+    </div>
+
+    <div class="round-decoration">✿</div>
+  </div>
+</section>
+
+<!-- SERVICES -->
+<section class="services-section" id="services">
+  <div class="section-heading">
+    <span class="section-label">NOS PRESTATIONS</span>
+    <h2>Tout pour votre <span>bien-être</span></h2>
+    <p>
+      Découvrez une sélection de services pour révéler
+      votre beauté et prendre soin de vous.
+    </p>
+  </div>
+
+  <div class="service-list">
+
+    <div class="service-card">
+      <div class="service-icon">✂</div>
+      <h3>Coiffure</h3>
+      <p>Des coupes et des styles qui reflètent votre personnalité.</p>
+      <a routerLink="/salons">Découvrir <span>→</span></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">♡</div>
+      <h3>Onglerie</h3>
+      <p>Des mains soignées et des ongles sublimés.</p>
+      <a routerLink="/salons">Découvrir <span>→</span></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">✿</div>
+      <h3>Soins & beauté</h3>
+      <p>Des soins adaptés pour révéler votre éclat naturel.</p>
+      <a routerLink="/salons">Découvrir <span>→</span></a>
+    </div>
+
+    <div class="service-card">
+      <div class="service-icon">☾</div>
+      <h3>Spa & massage</h3>
+      <p>Une parenthèse de détente pour le corps et l'esprit.</p>
+      <a routerLink="/salons">Découvrir <span>→</span></a>
+    </div>
+
+  </div>
+</section>
+
+<!-- ABOUT / HOW IT WORKS -->
+<section class="about-section" id="about">
+  <div class="about-content">
+    <span class="section-label">SIMPLE & RAPIDE</span>
+    <h2>Votre rendez-vous beauté en <span>3 étapes</span></h2>
+    <p>
+      Avec Tunisia Smart Beauty, organiser votre moment
+      beauté devient simple et agréable.
+    </p>
+
+    <div class="steps">
+
+      <div class="step">
+        <span class="step-number">01</span>
+        <div>
+          <h3>Trouvez votre salon</h3>
+          <p>Explorez les salons disponibles selon votre ville.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-number">02</span>
+        <div>
+          <h3>Choisissez votre service</h3>
+          <p>Consultez les prestations, les prix et les détails.</p>
+        </div>
+      </div>
+
+      <div class="step">
+        <span class="step-number">03</span>
+        <div>
+          <h3>Réservez votre moment</h3>
+          <p>Choisissez votre date et votre heure de rendez-vous.</p>
+        </div>
+      </div>
+
+    </div>
+
+    <a routerLink="/salons" class="primary-btn">
+      Commencer maintenant <span>→</span>
+    </a>
+  </div>
+
+  <div class="about-decoration">
+    <div class="about-circle">
+      <span>✿</span>
+      <strong>BEAUTY</strong>
+      <small>IS YOURS</small>
+    </div>
+  </div>
+</section>
+
+<!-- ESPACE PROFESSIONNEL -->
+<section class="professional-section">
+
+  <div class="professional-content">
+
+    <span class="section-label">
+      ESPACE PROFESSIONNEL
+    </span>
+
+    <h2>
+      Vous êtes professionnel
+      de la beauté ?
+    </h2>
+
+    <p>
+      Rejoignez Tunisia Smart Beauty et développez
+      votre activité. Présentez votre salon, vos
+      prestations et attirez de nouveaux clients.
+    </p>
+
+    <ul>
+      <li>✿ Présentez votre établissement</li>
+      <li>✿ Ajoutez vos services et vos tarifs</li>
+      <li>✿ Attirez de nouveaux clients</li>
+    </ul>
+
+    <a [routerLink]="lienAjouterSalon" class="professional-btn">
+      Ajouter mon salon <span>→</span>
+    </a>
+
+  </div>
+
+  <div class="professional-visual">
+    <div class="professional-icon">✿</div>
+    <span>YOUR BUSINESS</span>
+    <h3>Votre talent mérite d'être découvert.</h3>
+  </div>
+
+</section>
+
+<!-- CALL TO ACTION -->
+<section class="cta-section">
+  <span class="section-label">PRENEZ DU TEMPS POUR VOUS</span>
+  <h2>Votre prochain moment de beauté commence ici.</h2>
+  <p>Explorez nos salons et trouvez celui qui vous correspond.</p>
+  <a routerLink="/salons" class="cta-btn">
+    Trouver un salon <span>→</span>
+  </a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a routerLink="/accueil" class="logo">
+    <span class="logo-icon">✿</span>
+    Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <p>© 2026 Tunisia Smart Beauty. Tous droits réservés.</p>
+
+  <div class="footer-links">
+    <a routerLink="/accueil">Accueil</a>
+    <a routerLink="/salons">Nos salons</a>
+    <a routerLink="/login">Connexion</a>
+  </div>
+</footer>

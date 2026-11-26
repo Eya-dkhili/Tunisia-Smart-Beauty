@@ -1,0 +1,89 @@
+<!-- Navbar -->
+<nav class="navbar">
+  <a routerLink="/accueil" class="logo">
+    <span class="logo-icon">✿</span>
+    Tunisia <span>Smart Beauty</span>
+  </a>
+
+  <div class="nav-links">
+    <a routerLink="/accueil">Accueil</a>
+    <a routerLink="/salons">Nos salons</a>
+    <a routerLink="/services" class="active">Nos services</a>
+    <a routerLink="/about">À propos</a>
+  </div>
+
+  <a routerLink="/login" class="login-btn">Connexion</a>
+</nav>
+
+<!-- Hero -->
+<section class="hero">
+  <div class="hero-content">
+    <span class="eyebrow">PRENEZ SOIN DE VOUS</span>
+    <h1>Nos services <span>beauté & bien-être</span></h1>
+    <p>
+      Découvrez une sélection de prestations dédiées à votre beauté,
+      votre détente et votre bien-être.
+    </p>
+    <a routerLink="/salons" class="primary-btn">Découvrir nos salons</a>
+  </div>
+  <div class="hero-decoration">✿</div>
+</section>
+
+<!-- Services -->
+<section class="services-section">
+  <div class="section-heading">
+    <span class="eyebrow">NOS PRESTATIONS</span>
+    <h2>Tout pour votre <span>bien-être</span></h2>
+    <p>
+      Trouvez le service qui vous correspond et choisissez le salon
+      qui répond à vos envies.
+    </p>
+  </div>
+
+  <div class="services-grid">
+    <article class="service-card" *ngFor="let service of services">
+      <div class="service-image">
+        <img [src]="service.image" [alt]="service.nom">
+        <span class="service-emoji">{{ service.emoji }}</span>
+      </div>
+
+      <div class="service-content">
+        <h3>{{ service.nom }}</h3>
+        <p class="description">{{ service.description }}</p>
+
+        <div class="prestations">
+          <span class="prestation-label">Prestations proposées</span>
+          <ul>
+            <li *ngFor="let prestation of service.prestations">
+              <span>✓</span> {{ prestation }}
+            </li>
+          </ul>
+        </div>
+
+        <div class="card-footer">
+          <span class="price">{{ service.prix }}</span>
+          <a routerLink="/salons" class="service-btn">Explorer <span>→</span></a>
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<!-- CTA -->
+<section class="cta-section">
+  <div>
+    <span class="eyebrow">VOTRE MOMENT VOUS ATTEND</span>
+    <h2>Prête à prendre soin de vous ?</h2>
+    <p>Explorez nos salons et trouvez votre prochaine expérience beauté.</p>
+  </div>
+  <a routerLink="/salons" class="cta-btn">Trouver un salon →</a>
+</section>
+
+<!-- Footer -->
+<footer class="footer">
+  <a routerLink="/accueil" class="footer-logo">
+    ✿ Tunisia Smart Beauty
+  </a>
+  <p>Votre beauté, notre inspiration.</p>
+  <span>© 2026 Tunisia Smart Beauty — Tous droits réservés.</span>
+</footer>

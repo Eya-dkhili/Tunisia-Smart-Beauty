@@ -1,0 +1,688 @@
+
+<div class="admin-container">
+
+  <!-- SIDEBAR -->
+  <aside class="sidebar">
+
+    <div class="logo">
+      <span>✿</span>
+      Tunisia <strong>Smart Beauty</strong>
+    </div>
+
+    <p class="menu-title">MENU PRINCIPAL</p>
+
+    <nav>
+      <button
+        *ngFor="let menu of menus"
+        [class.active]="activeMenu === menu.name"
+        (click)="changeMenu(menu.name)">
+
+        <span class="menu-icon">{{ menu.icon }}</span>
+        {{ menu.name }}
+
+      </button>
+    </nav>
+
+    <div class="sidebar-bottom">
+      <button (click)="deconnexion()">
+        ↪ Déconnexion
+      </button>
+    </div>
+
+  </aside>
+
+
+  <!-- MAIN CONTENT -->
+  <main class="main-content">
+
+    <!-- HEADER -->
+    <header class="topbar">
+
+      <div>
+        <h2>{{ activeMenu }}</h2>
+        <p>Bienvenue dans votre espace administration</p>
+      </div>
+
+      <div class="admin-profile">
+
+        <div class="avatar">A</div>
+
+        <div>
+          <strong>{{ adminNom }}</strong>
+          <small>Administrateur</small>
+        </div>
+
+      </div>
+
+    </header>
+
+
+    <!-- ================================= -->
+    <!-- DASHBOARD -->
+    <!-- ================================= -->
+
+    <section *ngIf="activeMenu === 'Dashboard'">
+
+      <div class="welcome">
+        <h1>Bienvenue Admin !</h1>
+        <p>Gérez votre plateforme Tunisia Smart Beauty.</p>
+      </div>
+
+      <div class="stats-grid">
+
+        <div class="stat-card">
+          <span>Utilisateurs</span>
+          <h2>{{ users.length }}</h2>
+          <small>Total des utilisateurs</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Salons</span>
+          <h2>{{ salons.length }}</h2>
+          <small>Total des salons</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Réservations</span>
+          <h2>{{ reservations.length }}</h2>
+          <small>Total des réservations</small>
+        </div>
+
+        <div class="stat-card">
+          <span>En attente</span>
+          <h2>{{ countReservations('EN_ATTENTE') }}</h2>
+          <small>Réservations en attente</small>
+        </div>
+
+      </div>
+
+      <div class="content-card">
+        <h3>Bienvenue dans l'administration</h3>
+        <p>
+          Depuis cet espace, vous pouvez consulter les utilisateurs,
+          les salons et toutes les réservations de la plateforme.
+        </p>
+      </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- UTILISATEURS -->
+    <!-- ================================= -->
+
+    <section *ngIf="activeMenu === 'Utilisateurs'">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Gestion des utilisateurs</h2>
+          <p>Consultez et gérez les comptes de la plateforme.</p>
+        </div>
+
+        <span class="total-badge">
+          {{ users.length }} utilisateurs
+        </span>
+
+      </div>
+
+      <div class="content-card">
+
+        <div *ngIf="chargementUtilisateurs">
+          Chargement des utilisateurs...
+        </div>
+
+        <div *ngIf="erreurUtilisateurs" class="empty-message">
+          {{ erreurUtilisateurs }}
+
+          <button
+            class="action-btn"
+            (click)="chargerUtilisateurs()">
+            Réessayer
+          </button>
+        </div>
+
+        <div
+          class="table-responsive"
+          *ngIf="!chargementUtilisateurs && !erreurUtilisateurs">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Nom complet</th>
+                <th>Email</th>
+                <th>Téléphone</th>
+                <th>Rôle</th>
+                <th>Action</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let user of users">
+
+                <td>{{ user.id }}</td>
+
+                <td>
+                  {{ user.prenom }} {{ user.nom }}
+                </td>
+
+                <td>{{ user.email }}</td>
+
+                <td>
+                  {{ user.telephone || '—' }}
+                </td>
+
+                <td>
+                  <span class="status">
+                    {{ user.role }}
+                  </span>
+                </td>
+
+                <td>
+                  <button
+                    class="action-btn"
+                    (click)="supprimerUtilisateur(user.id)">
+
+                    Supprimer
+
+                  </button>
+                </td>
+
+              </tr>
+
+              <tr *ngIf="users.length === 0">
+                <td colspan="6" class="empty-message">
+                  Aucun utilisateur disponible.
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- SALONS -->
+    <!-- ================================= -->
+
+    <section *ngIf="activeMenu === 'Salons'">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Gestion des salons</h2>
+          <p>Consultez les salons enregistrés sur la plateforme.</p>
+        </div>
+
+        <span class="total-badge">
+          {{ salons.length }} salons
+        </span>
+
+      </div>
+
+      <div *ngIf="chargementSalons" class="content-card">
+        Chargement des salons...
+      </div>
+
+      <div *ngIf="erreurSalons" class="content-card empty-message">
+        {{ erreurSalons }}
+
+        <button
+          class="action-btn"
+          (click)="chargerSalons()">
+          Réessayer
+        </button>
+      </div>
+
+      <div
+        class="salons-grid"
+        *ngIf="!chargementSalons && !erreurSalons">
+
+        <div class="salon-card" *ngFor="let salon of salons">
+
+          <div class="salon-header">
+
+            <div class="salon-icon">
+              {{ salon.emoji || '✿' }}
+            </div>
+
+            <span class="status active-status">
+              Enregistré
+            </span>
+
+          </div>
+
+          <h3>{{ salon.nom }}</h3>
+
+          <p>
+            <strong>Professionnel :</strong>
+            {{ salon.professionnel || 'Non renseigné' }}
+          </p>
+
+          <p>
+            <strong>Ville :</strong>
+            {{ salon.ville }}
+          </p>
+
+          <p>
+            <strong>Adresse :</strong>
+            {{ salon.adresse }}
+          </p>
+
+          <p>
+            <strong>Service :</strong>
+            {{ salon.service }}
+          </p>
+
+          <p>
+            <strong>Note :</strong>
+            {{ salon.note }} / 5
+          </p>
+
+          <p>
+            <strong>Prestations :</strong>
+            {{ salon.nombrePrestations }}
+          </p>
+
+          <div class="salon-actions">
+
+            <button
+              class="refuse-btn"
+              (click)="supprimerSalon(salon.id)">
+
+              Supprimer
+
+            </button>
+
+          </div>
+
+        </div>
+
+      </div>
+
+      <div
+        *ngIf="!chargementSalons && !erreurSalons && salons.length === 0"
+        class="content-card">
+
+        <p class="empty-message">
+          Aucun salon disponible.
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- RESERVATIONS -->
+    <!-- ================================= -->
+
+    <section *ngIf="activeMenu === 'Réservations'">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Consultation des réservations</h2>
+          <p>Consultez les rendez-vous des clients.</p>
+        </div>
+
+        <span class="total-badge">
+          {{ reservations.length }} réservations
+        </span>
+
+      </div>
+
+
+      <!-- STATISTIQUES -->
+      <div class="stats-grid reservation-stats">
+
+        <div class="stat-card">
+          <span>Total</span>
+          <h2>{{ reservations.length }}</h2>
+          <small>Réservations</small>
+        </div>
+
+        <div class="stat-card">
+          <span>En attente</span>
+          <h2>{{ countReservations('EN_ATTENTE') }}</h2>
+          <small>À traiter</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Confirmées</span>
+          <h2>{{ countReservations('CONFIRMEE') }}</h2>
+          <small>Rendez-vous confirmés</small>
+        </div>
+
+        <div class="stat-card">
+          <span>Refusées / Annulées</span>
+          <h2>
+            {{ countReservations('REFUSEE') + countReservations('ANNULEE') }}
+          </h2>
+          <small>Réservations terminées</small>
+        </div>
+
+      </div>
+
+
+      <!-- TABLEAU RESERVATIONS -->
+      <div class="content-card reservation-table">
+
+        <div *ngIf="chargementReservations">
+          Chargement des réservations...
+        </div>
+
+        <div *ngIf="erreurReservations" class="empty-message">
+          {{ erreurReservations }}
+
+          <button
+            class="action-btn"
+            (click)="chargerReservations()">
+            Réessayer
+          </button>
+        </div>
+
+        <div
+          class="table-responsive"
+          *ngIf="!chargementReservations && !erreurReservations">
+
+          <table>
+
+            <thead>
+              <tr>
+                <th>ID</th>
+                <th>Client</th>
+                <th>Salon</th>
+                <th>Prestation</th>
+                <th>Prix</th>
+                <th>Date</th>
+                <th>Heure</th>
+                <th>Statut</th>
+                <th>Détails</th>
+              </tr>
+            </thead>
+
+            <tbody>
+
+              <tr *ngFor="let reservation of reservations">
+
+                <td>{{ reservation.id }}</td>
+
+                <td>{{ reservation.client }}</td>
+
+                <td>{{ reservation.salon }}</td>
+
+                <td>{{ reservation.prestation }}</td>
+
+                <td>{{ reservation.prix }} DT</td>
+
+                <td>
+                  {{ formatDate(reservation.dateReservation) }}
+                </td>
+
+                <td>
+                  {{ formatHeure(reservation.heureReservation) }}
+                </td>
+
+                <td>
+                  <span
+                    class="status"
+                    [ngClass]="classeStatut(reservation.statut)">
+
+                    {{ libelleStatut(reservation.statut) }}
+
+                  </span>
+                </td>
+
+                <td>
+                  <button
+                    class="action-btn"
+                    (click)="voirDetailsReservation(reservation.id)">
+
+                    Voir détails
+
+                  </button>
+                </td>
+
+              </tr>
+
+              <tr *ngIf="reservations.length === 0">
+                <td colspan="9" class="empty-message">
+                  Aucune réservation disponible.
+                </td>
+              </tr>
+
+            </tbody>
+
+          </table>
+
+        </div>
+
+      </div>
+
+
+      <!-- DETAILS RESERVATION -->
+      <div
+        class="content-card"
+        *ngIf="chargementDetails">
+
+        Chargement des détails...
+
+      </div>
+
+      <div
+        class="content-card"
+        *ngIf="erreurDetails">
+
+        {{ erreurDetails }}
+
+        <button
+          class="action-btn"
+          (click)="fermerDetailsReservation()">
+
+          Fermer
+
+        </button>
+
+      </div>
+
+      <div
+        class="content-card"
+        *ngIf="reservationSelectionnee">
+
+        <div class="section-heading">
+
+          <div>
+            <h3>
+              Détails de la réservation
+              #{{ reservationSelectionnee.id }}
+            </h3>
+
+            <p>Informations complètes de la réservation.</p>
+          </div>
+
+          <button
+            class="action-btn"
+            (click)="fermerDetailsReservation()">
+
+            Fermer
+
+          </button>
+
+        </div>
+
+        <p>
+          <strong>Client :</strong>
+          {{ reservationSelectionnee.client }}
+        </p>
+
+        <p>
+          <strong>Email :</strong>
+          {{ reservationSelectionnee.email }}
+        </p>
+
+        <p>
+          <strong>Salon :</strong>
+          {{ reservationSelectionnee.salon }}
+        </p>
+
+        <p>
+          <strong>Prestation :</strong>
+          {{ reservationSelectionnee.prestation }}
+        </p>
+
+        <p>
+          <strong>Prix :</strong>
+          {{ reservationSelectionnee.prix }} DT
+        </p>
+
+        <p>
+          <strong>Date :</strong>
+          {{ formatDate(reservationSelectionnee.dateReservation) }}
+        </p>
+
+        <p>
+          <strong>Heure :</strong>
+          {{ formatHeure(reservationSelectionnee.heureReservation) }}
+        </p>
+
+        <p>
+          <strong>Statut :</strong>
+
+          <span
+            class="status"
+            [ngClass]="classeStatut(reservationSelectionnee.statut)">
+
+            {{ libelleStatut(reservationSelectionnee.statut) }}
+
+          </span>
+
+        </p>
+
+      </div>
+
+    </section>
+
+
+    <!-- ================================= -->
+    <!-- SECURITE -->
+    <!-- ================================= -->
+
+    <section *ngIf="activeMenu === 'Sécurité'">
+
+      <div class="section-heading">
+
+        <div>
+          <h2>Sécurité et autorisations</h2>
+          <p>
+            Consultez les rôles et les permissions de la plateforme.
+          </p>
+        </div>
+
+        <span class="total-badge">
+          3 rôles
+        </span>
+
+      </div>
+
+
+      <!-- INFORMATIONS SECURITE -->
+      <div class="security-banner">
+
+        <div class="security-icon">🔒</div>
+
+        <div>
+          <h3>Protection de la plateforme</h3>
+
+          <p>
+            Chaque utilisateur dispose d'un accès selon son rôle
+            et ses autorisations.
+          </p>
+        </div>
+
+      </div>
+
+
+      <!-- ROLE CARDS -->
+      <div class="roles-grid">
+
+        <div class="role-card" *ngFor="let role of roles">
+
+          <div class="role-header">
+
+            <div class="role-icon">
+
+              <span *ngIf="role.name === 'ADMIN'">♛</span>
+
+              <span *ngIf="role.name === 'PROFESSIONNEL'">✿</span>
+
+              <span *ngIf="role.name === 'CLIENT'">♙</span>
+
+            </div>
+
+            <span class="role-badge">
+              {{ role.name }}
+            </span>
+
+          </div>
+
+          <h3>{{ role.name }}</h3>
+
+          <p class="role-description">
+            {{ role.description }}
+          </p>
+
+          <div class="permissions">
+
+            <h4>Permissions</h4>
+
+            <div
+              class="permission-item"
+              *ngFor="let permission of role.permissions">
+
+              <span class="check-icon">✓</span>
+
+              {{ permission }}
+
+            </div>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- CONSEIL SECURITE -->
+      <div class="content-card security-info">
+
+        <h3>Authentification et contrôle d'accès</h3>
+
+        <p>
+          La plateforme utilise une gestion des rôles pour limiter
+          l'accès aux fonctionnalités selon le type de compte.
+        </p>
+
+        <ul>
+          <li>Authentification avec JWT.</li>
+          <li>Protection des routes réservées à l'administration.</li>
+          <li>Vérification des autorisations côté serveur.</li>
+          <li>Protection des données personnelles.</li>
+        </ul>
+
+      </div>
+
+    </section>
+
+  </main>
+
+</div>

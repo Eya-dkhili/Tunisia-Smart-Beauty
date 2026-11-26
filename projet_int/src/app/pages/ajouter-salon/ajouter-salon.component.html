@@ -1,0 +1,678 @@
+
+<div class="page-container">
+
+  <!-- HEADER -->
+  <div class="page-header">
+
+    <a routerLink="/accueil" class="back-link">
+      ← Retour à l'accueil
+    </a>
+    <a routerLink="/mes-reservations" class="back-link">
+  Mes réservations →
+</a>
+
+    <span class="header-label">
+      ESPACE PROFESSIONNEL
+    </span>
+
+    <h1>
+      Gérez votre <span>salon</span>
+    </h1>
+
+    <p>
+      Ajoutez votre établissement, gérez vos informations
+      et proposez vos prestations à nos clients.
+    </p>
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- FORMULAIRE SALON -->
+  <!-- ================================= -->
+
+  <div class="form-card">
+
+    <div class="form-intro">
+
+      <div>
+
+        <span class="step-label">
+          INFORMATIONS DU SALON
+        </span>
+
+        <h2>
+          {{ salonEnEditionId !== null
+            ? 'Modifier votre établissement'
+            : 'Ajouter un salon'
+          }}
+        </h2>
+
+        <p>
+          {{ salonEnEditionId !== null
+            ? 'Modifiez les informations de votre salon.'
+            : 'Complétez les informations principales de votre salon.'
+          }}
+        </p>
+
+      </div>
+
+      <span class="required-note">
+        * Champs obligatoires
+      </span>
+
+    </div>
+
+
+    <form
+      (ngSubmit)="enregistrerSalon()"
+      #salonForm="ngForm">
+
+      <!-- INFORMATIONS GENERALES -->
+      <div class="form-section">
+
+        <h3>01. Informations générales</h3>
+
+        <div class="form-group">
+
+          <label>Nom du salon *</label>
+
+          <input
+            type="text"
+            name="nom"
+            [(ngModel)]="salon.nom"
+            placeholder="Ex : Élégance Beauty"
+            required>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Catégorie principale *</label>
+
+          <select
+            name="service"
+            [(ngModel)]="salon.service"
+            required>
+
+            <option value="">
+              Choisir une catégorie
+            </option>
+
+            <option value="Coiffure">Coiffure</option>
+
+            <option value="Onglerie">Onglerie</option>
+
+            <option value="Spa & massage">Spa & massage</option>
+
+            <option value="Soins du visage">
+              Soins du visage
+            </option>
+
+            <option value="Maquillage">Maquillage</option>
+
+            <option value="Hammam">Hammam</option>
+
+            <option value="Beauté">Beauté</option>
+
+          </select>
+
+        </div>
+
+      </div>
+
+
+      <div class="section-divider"></div>
+
+
+      <!-- LOCALISATION -->
+      <div class="form-section">
+
+        <h3>02. Localisation</h3>
+
+        <div class="form-group">
+
+          <label>Gouvernorat *</label>
+
+          <select
+            name="ville"
+            [(ngModel)]="salon.ville"
+            required>
+
+            <option value="">
+              Sélectionner votre gouvernorat
+            </option>
+
+            <option value="Ariana">Ariana</option>
+            <option value="Béja">Béja</option>
+            <option value="Ben Arous">Ben Arous</option>
+            <option value="Bizerte">Bizerte</option>
+            <option value="Gabès">Gabès</option>
+            <option value="Gafsa">Gafsa</option>
+            <option value="Jendouba">Jendouba</option>
+            <option value="Kairouan">Kairouan</option>
+            <option value="Kasserine">Kasserine</option>
+            <option value="Kébili">Kébili</option>
+            <option value="Le Kef">Le Kef</option>
+            <option value="Mahdia">Mahdia</option>
+            <option value="La Manouba">La Manouba</option>
+            <option value="Médenine">Médenine</option>
+            <option value="Monastir">Monastir</option>
+            <option value="Nabeul">Nabeul</option>
+            <option value="Sfax">Sfax</option>
+            <option value="Sidi Bouzid">Sidi Bouzid</option>
+            <option value="Siliana">Siliana</option>
+            <option value="Sousse">Sousse</option>
+            <option value="Tataouine">Tataouine</option>
+            <option value="Tozeur">Tozeur</option>
+            <option value="Tunis">Tunis</option>
+            <option value="Zaghouan">Zaghouan</option>
+
+          </select>
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Adresse complète *</label>
+
+          <input
+            type="text"
+            name="adresse"
+            [(ngModel)]="salon.adresse"
+            placeholder="Ex : Avenue Habib Bourguiba, Tunis"
+            required>
+
+        </div>
+
+      </div>
+
+
+      <div class="section-divider"></div>
+
+
+      <!-- PRESENTATION VISUELLE -->
+      <div class="form-section">
+
+        <h3>03. Présentation visuelle</h3>
+
+        <div class="form-group">
+
+          <label>Emoji du salon</label>
+
+          <input
+            type="text"
+            name="emoji"
+            [(ngModel)]="salon.emoji"
+            placeholder="Ex : 💅">
+
+        </div>
+
+
+        <div class="form-group">
+
+          <label>Image du salon (URL)</label>
+
+          <input
+            type="url"
+            name="image"
+            [(ngModel)]="salon.image"
+            placeholder="https://exemple.com/image.jpg">
+
+          <small>
+            Ajoutez un lien vers une photo de votre établissement.
+          </small>
+
+        </div>
+
+
+        <div class="image-preview" *ngIf="salon.image">
+
+          <img
+            [src]="salon.image"
+            alt="Aperçu du salon">
+
+        </div>
+
+      </div>
+
+
+      <!-- MESSAGES SALON -->
+      <div class="success-message" *ngIf="message">
+        {{ message }}
+      </div>
+
+      <div class="error-message" *ngIf="erreur">
+        {{ erreur }}
+      </div>
+
+
+      <!-- BOUTONS SALON -->
+      <div class="form-actions">
+
+        <button
+          type="submit"
+          class="submit-button"
+          [disabled]="!salonForm.valid || chargement">
+
+          {{
+            chargement
+              ? 'Enregistrement...'
+              : salonEnEditionId !== null
+                ? 'Enregistrer les modifications'
+                : 'Enregistrer mon salon'
+          }}
+
+          <span>→</span>
+
+        </button>
+
+
+        <button
+          *ngIf="salonEnEditionId !== null"
+          type="button"
+          class="cancel-button"
+          (click)="annulerModification()">
+
+          Annuler la modification
+
+        </button>
+
+      </div>
+
+    </form>
+
+  </div>
+
+
+  <!-- ================================= -->
+  <!-- MES SALONS -->
+  <!-- ================================= -->
+
+  <section class="mes-salons-section">
+
+    <div class="mes-salons-header">
+
+      <div>
+
+        <span class="step-label">
+          ESPACE PROFESSIONNEL
+        </span>
+
+        <h2>Mes salons</h2>
+
+        <p>
+          Consultez et gérez les établissements associés à votre compte.
+        </p>
+
+      </div>
+
+      <span class="total-salons">
+        {{ salons.length }} salon(s)
+      </span>
+
+    </div>
+
+
+    <!-- MESSAGES PRESTATIONS -->
+    <div class="success-message" *ngIf="messagePrestation">
+      {{ messagePrestation }}
+    </div>
+
+    <div class="error-message" *ngIf="erreurPrestation">
+      {{ erreurPrestation }}
+    </div>
+
+
+    <!-- CHARGEMENT -->
+    <div
+      class="loading-message"
+      *ngIf="chargementSalons">
+
+      Chargement de vos salons...
+
+    </div>
+
+
+    <!-- ERREUR CHARGEMENT -->
+    <div
+      class="error-message"
+      *ngIf="erreurChargementSalons">
+
+      {{ erreurChargementSalons }}
+
+      <button
+        type="button"
+        class="refresh-button"
+        (click)="chargerMesSalons()">
+
+        Réessayer
+
+      </button>
+
+    </div>
+
+
+    <!-- GRID SALONS -->
+    <div
+      class="mes-salons-grid"
+      *ngIf="!chargementSalons && !erreurChargementSalons">
+
+
+      <div
+        class="salon-management-card"
+        *ngFor="let item of salons">
+
+
+        <!-- IMAGE -->
+        <div class="salon-management-image">
+
+          <img
+            *ngIf="item.image"
+            [src]="item.image"
+            [alt]="item.nom">
+
+          <div
+            *ngIf="!item.image"
+            class="salon-image-placeholder">
+
+            {{ item.emoji || '✿' }}
+
+          </div>
+
+        </div>
+
+
+        <!-- INFORMATIONS SALON -->
+        <div class="salon-management-body">
+
+          <div class="salon-card-top">
+
+            <span class="salon-category">
+              {{ item.service }}
+            </span>
+
+            <span class="salon-id">
+              #{{ item.id }}
+            </span>
+
+          </div>
+
+
+          <h3>{{ item.nom }}</h3>
+
+          <p class="salon-location">
+            📍 {{ item.adresse }}, {{ item.ville }}
+          </p>
+
+
+          <div class="salon-details">
+
+            <div>
+
+              <span>Note</span>
+
+              <strong>
+                {{ item.note || 0 }} / 5
+              </strong>
+
+            </div>
+
+            <div>
+
+              <span>Prestations</span>
+
+              <strong>
+                {{ item.prestations?.length || 0 }}
+              </strong>
+
+            </div>
+
+          </div>
+
+
+          <!-- BOUTONS SALON -->
+          <div class="salon-management-actions">
+
+            <button
+              type="button"
+              class="edit-salon-button"
+              (click)="preparerModification(item)">
+
+              ✎ Modifier le salon
+
+            </button>
+
+
+            <button
+              type="button"
+              class="add-prestation-button"
+              (click)="ouvrirFormulairePrestation(item.id)">
+
+              + Ajouter prestation
+
+            </button>
+
+          </div>
+
+
+          <!-- ================================= -->
+          <!-- PRESTATIONS DU SALON -->
+          <!-- ================================= -->
+
+          <div class="prestations-section">
+
+            <h4>
+              Mes prestations
+            </h4>
+
+
+            <div
+              class="prestation-item"
+              *ngFor="let p of item.prestations">
+
+              <div class="prestation-info">
+
+                <strong>{{ p.nom }}</strong>
+
+                <span>
+                  {{ p.description || 'Aucune description' }}
+                </span>
+
+                <div class="prestation-meta">
+
+                  <span>{{ p.prix }} DT</span>
+
+                  <span>{{ p.dureeMinutes }} minutes</span>
+
+                </div>
+
+              </div>
+
+
+              <button
+                type="button"
+                class="delete-prestation-button"
+                (click)="supprimerPrestation(p.id, item.id)"
+                title="Supprimer cette prestation">
+
+                Supprimer
+
+              </button>
+
+            </div>
+
+
+            <div
+              class="empty-prestations"
+              *ngIf="!item.prestations || item.prestations.length === 0">
+
+              Aucune prestation pour ce salon.
+
+            </div>
+
+          </div>
+
+
+          <!-- ================================= -->
+          <!-- FORMULAIRE AJOUT PRESTATION -->
+          <!-- ================================= -->
+
+          <div
+            class="prestation-form-card"
+            *ngIf="salonPrestationId === item.id">
+
+
+            <div class="prestation-form-header">
+
+              <div>
+
+                <span class="step-label">
+                  NOUVELLE PRESTATION
+                </span>
+
+                <h4>Ajouter une prestation</h4>
+
+                <p>
+                  Salon : {{ item.nom }}
+                </p>
+
+              </div>
+
+            </div>
+
+
+            <form
+              #prestationForm="ngForm"
+              (ngSubmit)="ajouterPrestation()">
+
+
+              <div class="form-group">
+
+                <label>Nom de la prestation *</label>
+
+                <input
+                  type="text"
+                  name="nomPrestation"
+                  [(ngModel)]="prestation.nom"
+                  placeholder="Ex : Massage relaxant"
+                  required>
+
+              </div>
+
+
+              <div class="prestation-form-grid">
+
+                <div class="form-group">
+
+                  <label>Prix (DT) *</label>
+
+                  <input
+                    type="number"
+                    name="prixPrestation"
+                    [(ngModel)]="prestation.prix"
+                    min="0.1"
+                    step="0.1"
+                    placeholder="70"
+                    required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                  <label>Durée (minutes) *</label>
+
+                  <input
+                    type="number"
+                    name="dureePrestation"
+                    [(ngModel)]="prestation.dureeMinutes"
+                    min="1"
+                    placeholder="60"
+                    required>
+
+                </div>
+
+              </div>
+
+
+              <div class="form-group">
+
+                <label>Description</label>
+
+                <textarea
+                  name="descriptionPrestation"
+                  [(ngModel)]="prestation.description"
+                  placeholder="Décrivez votre prestation..."
+                  rows="3">
+                </textarea>
+
+              </div>
+
+
+              <div class="prestation-form-actions">
+
+                <button
+                  type="submit"
+                  class="submit-button"
+                  [disabled]="!prestationForm.valid || chargementPrestation">
+
+                  {{
+                    chargementPrestation
+                      ? 'Enregistrement...'
+                      : 'Enregistrer la prestation'
+                  }}
+
+                </button>
+
+
+                <button
+                  type="button"
+                  class="cancel-button"
+                  (click)="fermerFormulairePrestation()">
+
+                  Annuler
+
+                </button>
+
+              </div>
+
+            </form>
+
+          </div>
+
+        </div>
+
+      </div>
+
+
+      <!-- AUCUN SALON -->
+      <div
+        class="empty-salons"
+        *ngIf="salons.length === 0">
+
+        <div class="empty-salon-icon">
+          ✿
+        </div>
+
+        <h3>Vous n'avez pas encore de salon</h3>
+
+        <p>
+          Utilisez le formulaire ci-dessus pour ajouter votre établissement.
+        </p>
+
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <p class="footer-note">
+    Tunisia Smart Beauty · Votre activité mérite d'être découverte.
+  </p>
+
+</div>

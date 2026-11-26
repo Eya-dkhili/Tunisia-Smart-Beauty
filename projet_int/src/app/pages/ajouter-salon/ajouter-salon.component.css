@@ -1,0 +1,876 @@
+
+/* ==========================================
+   PAGE GENERALE
+========================================== */
+
+.page-container {
+  min-height: 100vh;
+  padding: 55px 20px;
+  background:
+    radial-gradient(circle at 10% 10%, #f9e7ee 0, transparent 30%),
+    radial-gradient(circle at 90% 80%, #f5e9ed 0, transparent 30%),
+    #fcf9fa;
+  font-family: 'Segoe UI', Arial, sans-serif;
+  box-sizing: border-box;
+}
+
+
+/* ==========================================
+   HEADER
+========================================== */
+
+.page-header {
+  max-width: 850px;
+  margin: 0 auto 45px;
+  text-align: center;
+}
+
+.back-link {
+  display: inline-flex;
+  align-items: center;
+  color: #8e6b7b;
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: 600;
+  transition: 0.3s;
+  margin-bottom: 40px;
+}
+
+.back-link:hover {
+  color: #b84d75;
+  transform: translateX(-4px);
+}
+
+.header-label {
+  display: inline-block;
+  color: #b84d75;
+  background: #f8e6ed;
+  padding: 9px 18px;
+  border-radius: 30px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.page-header h1 {
+  color: #493541;
+  font-size: 43px;
+  font-weight: 700;
+  letter-spacing: -1px;
+  margin: 20px 0 12px;
+}
+
+.page-header h1 span {
+  color: #bd527b;
+}
+
+.page-header p {
+  max-width: 580px;
+  margin: auto;
+  color: #897985;
+  font-size: 15px;
+  line-height: 1.9;
+}
+
+
+/* ==========================================
+   FORMULAIRE SALON
+========================================== */
+
+.form-card {
+  max-width: 850px;
+  margin: auto;
+  padding: 45px;
+  background: rgba(255, 255, 255, 0.95);
+  border: 1px solid #f0e2e8;
+  border-radius: 22px;
+  box-shadow:
+    0 20px 55px rgba(105, 65, 83, 0.07),
+    0 3px 10px rgba(105, 65, 83, 0.03);
+  animation: formAppear 0.6s ease;
+}
+
+@keyframes formAppear {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+
+/* INTRODUCTION */
+
+.form-intro {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid #f1e7eb;
+  margin-bottom: 35px;
+}
+
+.step-label {
+  color: #bd527b;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 2px;
+}
+
+.form-intro h2 {
+  color: #493541;
+  font-size: 26px;
+  margin: 12px 0 7px;
+}
+
+.form-intro p {
+  color: #968591;
+  font-size: 14px;
+  margin: 0;
+}
+
+.required-note {
+  color: #a18e99;
+  font-size: 12px;
+  white-space: nowrap;
+}
+
+
+/* SECTIONS */
+
+.form-section {
+  margin-bottom: 30px;
+}
+
+.form-section h3 {
+  color: #68485a;
+  font-size: 17px;
+  font-weight: 700;
+  margin: 0 0 27px;
+  padding-left: 14px;
+  border-left: 4px solid #bd527b;
+}
+
+
+/* CHAMPS */
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+.form-group label {
+  display: block;
+  color: #57434e;
+  font-size: 14px;
+  font-weight: 650;
+  margin-bottom: 11px;
+}
+
+.form-group input,
+.form-group select,
+.form-group textarea {
+  width: 100%;
+  padding: 0 17px;
+  box-sizing: border-box;
+  border: 1px solid #eadde4;
+  border-radius: 11px;
+  background: #fffdfd;
+  color: #493541;
+  font-size: 14px;
+  font-family: inherit;
+  outline: none;
+  transition: all 0.25s ease;
+}
+
+.form-group input,
+.form-group select {
+  height: 53px;
+}
+
+.form-group textarea {
+  min-height: 100px;
+  padding: 14px 17px;
+  resize: vertical;
+}
+
+.form-group input::placeholder,
+.form-group textarea::placeholder {
+  color: #b6a6af;
+}
+
+.form-group input:hover,
+.form-group select:hover,
+.form-group textarea:hover {
+  border-color: #d9a1b7;
+  background: #fffafb;
+}
+
+.form-group input:focus,
+.form-group select:focus,
+.form-group textarea:focus {
+  border-color: #bd527b;
+  background: #ffffff;
+  box-shadow: 0 0 0 4px rgba(189, 82, 123, 0.10);
+}
+
+.form-group select {
+  cursor: pointer;
+}
+
+.form-group select option {
+  color: #493541;
+  padding: 10px;
+}
+
+.form-group small {
+  display: block;
+  margin-top: 9px;
+  color: #a18e99;
+  font-size: 12px;
+}
+
+
+/* SEPARATEURS */
+
+.section-divider {
+  height: 1px;
+  background: linear-gradient(
+    to right,
+    transparent,
+    #eadce3,
+    transparent
+  );
+  margin: 35px 0;
+}
+
+
+/* IMAGE PREVIEW */
+
+.image-preview {
+  margin-top: 18px;
+  height: 250px;
+  overflow: hidden;
+  border-radius: 15px;
+  border: 1px solid #f0e1e8;
+  box-shadow: 0 8px 20px rgba(105, 65, 83, 0.08);
+}
+
+.image-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.image-preview:hover img {
+  transform: scale(1.04);
+}
+
+
+/* FORM ACTIONS */
+
+.form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-top: 40px;
+  padding-top: 28px;
+  border-top: 1px solid #f1e7eb;
+}
+
+.submit-button {
+  width: 100%;
+  min-height: 57px;
+  padding: 15px 22px;
+  border: none;
+  border-radius: 12px;
+  background: linear-gradient(120deg, #c45c83, #a9406c);
+  color: white;
+  font-size: 15px;
+  font-weight: 700;
+  font-family: inherit;
+  letter-spacing: 0.3px;
+  cursor: pointer;
+  box-shadow: 0 8px 18px rgba(189, 82, 123, 0.20);
+  transition: all 0.3s ease;
+}
+
+.submit-button:hover:not(:disabled) {
+  background: linear-gradient(120deg, #b84d75, #96385f);
+  box-shadow: 0 12px 24px rgba(189, 82, 123, 0.30);
+  transform: translateY(-3px);
+}
+
+.submit-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+  box-shadow: none;
+}
+
+.submit-button span {
+  margin-left: 10px;
+  font-size: 18px;
+}
+
+
+/* CANCEL BUTTON */
+
+.cancel-button {
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 20px;
+  border: 1px solid #dfcbd4;
+  border-radius: 11px;
+  background: #fff;
+  color: #8e6b7b;
+  font-size: 14px;
+  font-weight: 650;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.cancel-button:hover {
+  background: #f9eef2;
+  border-color: #bd527b;
+}
+
+
+/* ==========================================
+   MESSAGES
+========================================== */
+
+.success-message {
+  color: #267b50;
+  background: #edf9f1;
+  border: 1px solid #d1eedb;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-size: 14px;
+}
+
+.error-message {
+  color: #bd354c;
+  background: #fff1f2;
+  border: 1px solid #f4d4d9;
+  padding: 15px;
+  border-radius: 10px;
+  margin-top: 20px;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.loading-message {
+  padding: 24px;
+  text-align: center;
+  color: #8e6b7b;
+  background: #fff;
+  border: 1px solid #f0e2e8;
+  border-radius: 14px;
+  margin-top: 20px;
+}
+
+
+/* ==========================================
+   MES SALONS
+========================================== */
+
+.mes-salons-section {
+  max-width: 1150px;
+  margin: 75px auto 0;
+}
+
+.mes-salons-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 30px;
+}
+
+.mes-salons-header h2 {
+  color: #493541;
+  font-size: 29px;
+  margin: 10px 0;
+}
+
+.mes-salons-header p {
+  color: #897985;
+  font-size: 14px;
+  line-height: 1.7;
+  margin: 0;
+}
+
+.total-salons {
+  flex-shrink: 0;
+  padding: 11px 18px;
+  color: #a9406c;
+  background: #f8e6ed;
+  border-radius: 25px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+
+/* SALONS GRID */
+
+.mes-salons-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 24px;
+}
+
+
+/* SALON CARD */
+
+.salon-management-card {
+  overflow: hidden;
+  background: #ffffff;
+  border: 1px solid #f0e2e8;
+  border-radius: 17px;
+  box-shadow: 0 10px 30px rgba(105, 65, 83, 0.06);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.salon-management-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 17px 35px rgba(105, 65, 83, 0.11);
+}
+
+
+/* SALON IMAGE */
+
+.salon-management-image {
+  height: 205px;
+  overflow: hidden;
+  background: #f9edf2;
+}
+
+.salon-management-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.4s ease;
+}
+
+.salon-management-card:hover .salon-management-image img {
+  transform: scale(1.04);
+}
+
+.salon-image-placeholder {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+  color: #bd527b;
+  font-size: 60px;
+  background: linear-gradient(135deg, #f9e7ee, #f3dce6);
+}
+
+
+/* SALON BODY */
+
+.salon-management-body {
+  padding: 23px;
+}
+
+.salon-card-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+}
+
+.salon-category {
+  display: inline-block;
+  padding: 7px 12px;
+  border-radius: 20px;
+  background: #f8e6ed;
+  color: #a9406c;
+  font-size: 11px;
+  font-weight: 700;
+}
+
+.salon-id {
+  color: #a18e99;
+  font-size: 12px;
+}
+
+.salon-management-body > h3 {
+  color: #493541;
+  font-size: 21px;
+  margin: 17px 0 10px;
+}
+
+.salon-location {
+  color: #897985;
+  font-size: 13px;
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+
+
+/* SALON DETAILS */
+
+.salon-details {
+  display: flex;
+  gap: 35px;
+  padding: 17px 0;
+  margin-top: 17px;
+  border-top: 1px solid #f1e7eb;
+  border-bottom: 1px solid #f1e7eb;
+}
+
+.salon-details div {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+}
+
+.salon-details span {
+  color: #a18e99;
+  font-size: 12px;
+}
+
+.salon-details strong {
+  color: #68485a;
+  font-size: 15px;
+}
+
+
+/* SALON ACTION BUTTONS */
+
+.salon-management-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 18px;
+}
+
+.edit-salon-button,
+.add-prestation-button {
+  width: 100%;
+  min-height: 45px;
+  padding: 11px 18px;
+  border-radius: 10px;
+  font-size: 14px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.edit-salon-button {
+  border: none;
+  background: linear-gradient(120deg, #c45c83, #a9406c);
+  color: #ffffff;
+}
+
+.edit-salon-button:hover {
+  background: linear-gradient(120deg, #b84d75, #96385f);
+  transform: translateY(-2px);
+}
+
+.add-prestation-button {
+  border: 1px solid #bd527b;
+  background: #fff7fa;
+  color: #a9406c;
+}
+
+.add-prestation-button:hover {
+  background: #f8e6ed;
+}
+
+
+/* ==========================================
+   PRESTATIONS
+========================================== */
+
+.prestations-section {
+  margin-top: 27px;
+}
+
+.prestations-section > h4 {
+  color: #68485a;
+  font-size: 16px;
+  margin: 0 0 15px;
+}
+
+
+/* PRESTATION ITEM */
+
+.prestation-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 15px;
+  padding: 15px;
+  margin-bottom: 11px;
+  background: #fff9fb;
+  border: 1px solid #f1e3e9;
+  border-radius: 12px;
+}
+
+.prestation-info {
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+  min-width: 0;
+}
+
+.prestation-info strong {
+  color: #493541;
+  font-size: 14px;
+}
+
+.prestation-info > span {
+  color: #968591;
+  font-size: 12px;
+  line-height: 1.5;
+}
+
+.prestation-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 12px;
+  margin-top: 3px;
+}
+
+.prestation-meta span {
+  color: #a9406c;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+
+/* DELETE PRESTATION */
+
+.delete-prestation-button {
+  flex-shrink: 0;
+  padding: 8px 11px;
+  border: 1px solid #f0cdd5;
+  border-radius: 8px;
+  background: #fff4f5;
+  color: #bd354c;
+  font-size: 11px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: 0.25s;
+}
+
+.delete-prestation-button:hover {
+  background: #fce1e5;
+  border-color: #d98a9b;
+}
+
+
+/* EMPTY PRESTATIONS */
+
+.empty-prestations {
+  padding: 17px;
+  text-align: center;
+  background: #fff9fb;
+  border: 1px dashed #e4cbd5;
+  border-radius: 10px;
+  color: #a18e99;
+  font-size: 13px;
+}
+
+
+/* ==========================================
+   FORMULAIRE PRESTATION
+========================================== */
+
+.prestation-form-card {
+  margin-top: 20px;
+  padding: 22px;
+  background: #fff9fb;
+  border: 1px solid #eddae3;
+  border-radius: 14px;
+  animation: formAppear 0.35s ease;
+}
+
+.prestation-form-header {
+  margin-bottom: 22px;
+}
+
+.prestation-form-header h4 {
+  color: #493541;
+  font-size: 19px;
+  margin: 9px 0 7px;
+}
+
+.prestation-form-header p {
+  color: #968591;
+  font-size: 13px;
+  margin: 0;
+}
+
+.prestation-form-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 15px;
+}
+
+.prestation-form-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 20px;
+}
+
+
+/* ==========================================
+   EMPTY SALONS
+========================================== */
+
+.empty-salons {
+  grid-column: 1 / -1;
+  padding: 55px 20px;
+  text-align: center;
+  border: 1px dashed #dfcbd4;
+  border-radius: 17px;
+  background: rgba(255, 255, 255, 0.75);
+}
+
+.empty-salon-icon {
+  color: #bd527b;
+  font-size: 50px;
+  margin-bottom: 15px;
+}
+
+.empty-salons h3 {
+  color: #493541;
+  font-size: 20px;
+  margin: 10px 0;
+}
+
+.empty-salons p {
+  color: #897985;
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.refresh-button {
+  display: block;
+  margin-top: 12px;
+  padding: 9px 17px;
+  border: 1px solid #bd527b;
+  border-radius: 9px;
+  background: white;
+  color: #a9406c;
+  font-weight: 650;
+  cursor: pointer;
+}
+
+
+/* ==========================================
+   FOOTER
+========================================== */
+
+.footer-note {
+  text-align: center;
+  color: #a18d98;
+  font-size: 12px;
+  margin-top: 45px;
+  letter-spacing: 0.4px;
+}
+
+
+/* ==========================================
+   RESPONSIVE
+========================================== */
+
+@media (max-width: 900px) {
+
+  .mes-salons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .mes-salons-section {
+    margin-top: 55px;
+  }
+
+}
+
+@media (max-width: 768px) {
+
+  .page-container {
+    padding: 30px 15px;
+  }
+
+  .form-card {
+    padding: 30px 22px;
+  }
+
+  .page-header h1 {
+    font-size: 34px;
+  }
+
+  .mes-salons-header {
+    align-items: flex-start;
+  }
+
+}
+
+@media (max-width: 500px) {
+
+  .form-card {
+    padding: 25px 17px;
+    border-radius: 15px;
+  }
+
+  .page-header h1 {
+    font-size: 29px;
+  }
+
+  .form-intro {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .required-note {
+    white-space: normal;
+  }
+
+  .form-group input,
+  .form-group select {
+    height: 50px;
+  }
+
+  .mes-salons-header {
+    flex-direction: column;
+  }
+
+  .total-salons {
+    align-self: flex-start;
+  }
+
+  .salon-details {
+    gap: 20px;
+  }
+
+  .salon-management-body {
+    padding: 18px;
+  }
+
+  .prestation-item {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .delete-prestation-button {
+    align-self: flex-end;
+  }
+
+  .prestation-form-grid {
+    grid-template-columns: 1fr;
+    gap: 0;
+  }
+
+}

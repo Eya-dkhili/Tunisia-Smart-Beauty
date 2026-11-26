@@ -1,0 +1,267 @@
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <a routerLink="/accueil" class="logo">
+    <span>✿</span> Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <nav>
+    <a routerLink="/accueil">Accueil</a>
+    <a routerLink="/salons">Nos salons</a>
+    <a routerLink="/login">Connexion</a>
+    <a routerLink="/register" class="register-link">S'inscrire</a>
+  </nav>
+</header>
+
+<!-- HERO -->
+<section class="reservation-hero">
+  <div class="hero-content">
+    <span class="eyebrow">PRENEZ SOIN DE VOUS</span>
+
+    <h1>
+      Votre moment<br>
+      <span>de beauté commence ici.</span>
+    </h1>
+
+    <p>
+      Choisissez votre prestation, votre date et votre heure
+      pour profiter d'un agréable moment de bien-être.
+    </p>
+  </div>
+
+  <div class="hero-decoration">✿</div>
+</section>
+
+<!-- RESERVATION -->
+<section class="reservation-section">
+
+  <div class="reservation-intro">
+    <span class="section-label">VOTRE RENDEZ-VOUS</span>
+    <h2>Réserver un rendez-vous</h2>
+    <p>Remplissez les informations ci-dessous pour continuer.</p>
+  </div>
+
+  <!-- CHARGEMENT -->
+  <div *ngIf="chargement" class="loading-message">
+    Chargement de votre réservation...
+  </div>
+
+  <!-- ERREUR DE CHARGEMENT -->
+  <div *ngIf="erreur" class="error-message">
+    {{ erreur }}
+    <a routerLink="/salons">Retour aux salons</a>
+  </div>
+
+  <div
+    class="reservation-layout"
+    *ngIf="!chargement && !erreur && prestation">
+
+    <!-- FORM -->
+    <div class="reservation-card">
+
+      <form #form="ngForm" (ngSubmit)="confirmerReservation()">
+
+        
+
+        <!-- FORM HEADING -->
+        <div class="form-heading">
+          <span class="form-icon">♡</span>
+
+          <div>
+            <h3>Informations du rendez-vous</h3>
+            <p>Les champs marqués sont obligatoires.</p>
+          </div>
+        </div>
+
+        <!-- RÉCAPITULATIF -->
+        <div class="selected-booking" *ngIf="prestation && salon">
+
+          <div class="selected-booking-heading">
+            <span>Récapitulatif de votre choix</span>
+          </div>
+
+          <div class="booking-info">
+            <p><strong>Salon :</strong> {{ salon.nom }}</p>
+            <p><strong>Ville :</strong> {{ salon.ville }}</p>
+            <p><strong>Prestation :</strong> {{ prestation.nom }}</p>
+            <p>
+              <strong>Durée :</strong>
+              {{ prestation.dureeMinutes }} minutes
+            </p>
+            <p><strong>Prix :</strong> {{ prestation.prix }} DT</p>
+          </div>
+
+        </div>
+
+        <!-- DATE ET HEURE -->
+        <div class="form-row">
+
+          <div class="form-group">
+            <label>Date du rendez-vous</label>
+
+            <input
+              type="date"
+              name="date"
+              [(ngModel)]="date"
+              required>
+          </div>
+
+          <div class="form-group">
+            <label>Heure</label>
+
+            <select
+              name="heure"
+              [(ngModel)]="heure"
+              required>
+
+              <option value="">Choisir</option>
+              <option value="09:00">09:00</option>
+              <option value="10:00">10:00</option>
+              <option value="11:00">11:00</option>
+              <option value="14:00">14:00</option>
+              <option value="15:00">15:00</option>
+              <option value="16:00">16:00</option>
+
+            </select>
+          </div>
+
+        </div>
+
+        <div class="form-divider"></div>
+
+        <!-- COORDONNÉES -->
+        <div class="form-heading">
+          <span class="form-icon">♙</span>
+
+          <div>
+            <h3>Vos coordonnées</h3>
+            <p>Pour vous contacter concernant votre rendez-vous.</p>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label>Nom et prénom</label>
+
+          <input
+            type="text"
+            name="nom"
+            [(ngModel)]="nom"
+            placeholder="Votre nom complet"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Téléphone</label>
+
+          <input
+            type="tel"
+            name="telephone"
+            [(ngModel)]="telephone"
+            placeholder="Votre numéro de téléphone"
+            required>
+        </div>
+
+        <div class="form-group">
+          <label>Adresse email</label>
+
+          <input
+            type="email"
+            name="email"
+            [(ngModel)]="email"
+            placeholder="exemple@email.com"
+            required>
+        </div>
+
+        <!-- BOUTON DE CONFIRMATION -->
+        <button
+  type="submit"
+  [disabled]="enregistrement">
+
+  {{ enregistrement ? 'Enregistrement...' : 'Confirmer ma réservation' }}
+  <span>→</span>
+</button><br>
+<!-- MESSAGE D'ERREUR -->
+        <div *ngIf="messageErreur" class="message-erreur">
+          {{ messageErreur }}
+        </div>
+      </form>
+
+      <!-- CONFIRMATION -->
+      <div class="success" *ngIf="confirmation">
+
+        <div class="success-icon">✓</div>
+
+        <h3>Votre réservation est enregistrée !</h3>
+
+        <p>Voici le récapitulatif de votre demande :</p>
+
+        <div class="success-details">
+          <p><strong>Salon :</strong> {{ salon?.nom }}</p>
+          <p><strong>Prestation :</strong> {{ prestation?.nom }}</p>
+          <p><strong>Prix :</strong> {{ prestation?.prix }} DT</p>
+          <p><strong>Date :</strong> {{ date }}</p>
+          <p><strong>Heure :</strong> {{ heure }}</p>
+          <p><strong>Nom :</strong> {{ nom }}</p>
+          <p><strong>Téléphone :</strong> {{ telephone }}</p>
+          <p><strong>Email :</strong> {{ email }}</p>
+        </div>
+
+        <small>
+          Cette confirmation est une simulation frontend.
+        </small>
+
+      </div>
+
+    </div>
+
+    <!-- SIDE INFORMATION -->
+    <aside class="reservation-aside">
+
+      <div class="aside-decoration">✿</div>
+
+      <span class="section-label">UN MOMENT POUR VOUS</span>
+
+      <h3>La beauté commence par prendre soin de soi.</h3>
+
+      <p>
+        Prenez une pause dans votre quotidien et profitez
+        d'une expérience dédiée à votre beauté et votre bien-être.
+      </p>
+
+      <div class="aside-feature">
+        <span>♡</span>
+
+        <div>
+          <strong>Simple et rapide</strong>
+          <small>Réservez en quelques étapes.</small>
+        </div>
+      </div>
+
+      <div class="aside-feature">
+        <span>✧</span>
+
+        <div>
+          <strong>Votre choix, votre moment</strong>
+          <small>Choisissez le service qui vous convient.</small>
+        </div>
+      </div>
+
+      <a routerLink="/salons" class="back-salons">
+        Découvrir nos salons →
+      </a>
+
+    </aside>
+
+  </div>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <a routerLink="/accueil" class="logo">
+    <span>✿</span> Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <p>© 2026 Tunisia Smart Beauty. Tous droits réservés.</p>
+
+</footer>

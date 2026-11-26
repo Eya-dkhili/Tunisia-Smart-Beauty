@@ -1,0 +1,164 @@
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <a routerLink="/accueil" class="logo">
+    <span>✿</span> Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <nav>
+    <a routerLink="/accueil">Accueil</a>
+    <a routerLink="/salons" class="active">Nos salons</a>
+    <a routerLink="/login">Connexion</a>
+    <a routerLink="/register" class="register-link">S'inscrire</a>
+  </nav>
+</header>
+
+<!-- PAGE INTRO -->
+<section class="page-hero">
+  <div class="hero-text">
+    <span class="eyebrow">DÉCOUVREZ NOS ADRESSES BEAUTÉ</span>
+
+    <h1>Trouvez le salon<br>
+      <span>qui vous ressemble.</span>
+    </h1>
+
+    <p>
+      Explorez notre sélection de salons de beauté en Tunisie
+      et trouvez l'endroit idéal pour votre prochain moment de bien-être.
+    </p>
+  </div>
+
+  <div class="hero-decoration">✿</div>
+</section>
+
+<!-- SEARCH AND FILTER -->
+<section class="catalog-section">
+
+  <div class="catalog-heading">
+    <div>
+      <span class="section-label">NOTRE SÉLECTION</span>
+      <h2>Nos salons de beauté</h2>
+      <p>Des espaces dédiés à votre beauté et à votre bien-être.</p>
+    </div>
+
+    <span class="results-count">
+      {{ salonsFiltres.length }} salon(s)
+    </span>
+  </div>
+
+  <div class="search-panel">
+
+    <div class="search-field">
+      <span>⌕</span>
+      <input
+        type="text"
+        [(ngModel)]="recherche"
+        placeholder="Rechercher un salon..."
+      >
+    </div>
+
+    <div class="city-field">
+      <span>📍</span>
+      <select [(ngModel)]="ville">
+        <option value="">Toutes les villes</option>
+       <option value="Béja">Béja</option>
+            <option value="Ben Arous">Ben Arous</option>
+            <option value="Bizerte">Bizerte</option>
+            <option value="Gabès">Gabès</option>
+            <option value="Gafsa">Gafsa</option>
+            <option value="Jendouba">Jendouba</option>
+            <option value="Kairouan">Kairouan</option>
+            <option value="Kasserine">Kasserine</option>
+            <option value="Kébili">Kébili</option>
+            <option value="Le Kef">Le Kef</option>
+            <option value="Mahdia">Mahdia</option>
+            <option value="La Manouba">La Manouba</option>
+            <option value="Médenine">Médenine</option>
+            <option value="Monastir">Monastir</option>
+            <option value="Nabeul">Nabeul</option>
+            <option value="Sfax">Sfax</option>
+            <option value="Sidi Bouzid">Sidi Bouzid</option>
+            <option value="Siliana">Siliana</option>
+            <option value="Sousse">Sousse</option>
+            <option value="Tataouine">Tataouine</option>
+            <option value="Tozeur">Tozeur</option>
+            <option value="Tunis">Tunis</option>
+            <option value="Zaghouan">Zaghouan</option>
+      </select>
+    </div>
+
+  </div>
+
+  <!-- SALON CARDS -->
+  <div class="salon-grid">
+
+    <article class="salon-card" *ngFor="let salon of salonsFiltres">
+
+      <div class="salon-image">
+        <img [src]="salon.image" [alt]="salon.nom">
+
+        <span class="salon-category">
+          {{ salon.service }}
+        </span>
+
+        <span class="rating">
+          ★ {{ salon.note }}
+        </span>
+      </div>
+
+      <div class="salon-info">
+
+        <div class="salon-location">
+          📍 {{ salon.ville }}
+        </div>
+
+        <h3>{{ salon.nom }}</h3>
+
+        <p class="salon-address">
+          {{ salon.adresse }}
+        </p>
+
+        <div class="salon-footer">
+          <span class="salon-type">{{ salon.emoji }} {{ salon.service }}</span>
+
+          <a [routerLink]="['/salon-details', salon.id]">
+            Voir détails <span>→</span>
+          </a>
+        </div>
+
+      </div>
+
+    </article>
+
+  </div>
+
+  <!-- EMPTY RESULT -->
+  <div class="empty-state" *ngIf="salonsFiltres.length === 0">
+    <span>🔎</span>
+    <h3>Aucun salon trouvé</h3>
+    <p>Essayez de modifier votre recherche ou votre filtre.</p>
+
+    <button (click)="recherche = ''; ville = ''">
+      Réinitialiser les filtres
+    </button>
+  </div>
+
+</section>
+
+<!-- BOTTOM CTA -->
+<section class="salon-cta">
+  <h2>Votre prochain moment de beauté vous attend.</h2>
+  <p>Choisissez votre salon et prenez du temps pour vous.</p>
+  <a routerLink="/accueil">Retour à l'accueil</a>
+</section>
+
+<!-- FOOTER -->
+<footer class="footer">
+  <a routerLink="/accueil" class="logo">
+    <span>✿</span> Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <p>© 2026 Tunisia Smart Beauty. Tous droits réservés.</p>
+
+  <a routerLink="/accueil">Accueil</a>
+</footer>

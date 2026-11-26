@@ -1,0 +1,314 @@
+
+<div class="reservations-page">
+
+  <!-- HEADER -->
+  <header class="page-header">
+
+    <a routerLink="/ajouter-salon" class="back-link">
+      ← Retour à mon espace
+    </a>
+
+    <span class="header-label">
+      ESPACE PROFESSIONNEL
+    </span>
+
+    <h1>
+      Gestion des <span>réservations</span>
+    </h1>
+
+    <p>
+      Consultez les demandes de vos clients et gérez
+      vos rendez-vous depuis votre espace professionnel.
+    </p>
+
+  </header>
+
+
+  <!-- STATISTIQUES -->
+  <section class="stats-grid">
+
+    <div class="stat-card">
+      <span>Total</span>
+      <h2>{{ reservations.length }}</h2>
+      <small>Toutes les réservations</small>
+    </div>
+
+    <div class="stat-card pending-card">
+      <span>En attente</span>
+      <h2>{{ compter('EN_ATTENTE') }}</h2>
+      <small>À traiter</small>
+    </div>
+
+    <div class="stat-card confirmed-card">
+      <span>Confirmées</span>
+      <h2>{{ compter('CONFIRMEE') }}</h2>
+      <small>Rendez-vous confirmés</small>
+    </div>
+
+    <div class="stat-card refused-card">
+      <span>Refusées</span>
+      <h2>{{ compter('REFUSEE') }}</h2>
+      <small>Demandes refusées</small>
+    </div>
+
+  </section>
+
+
+  <!-- MESSAGES -->
+  <div class="success-message" *ngIf="message">
+    {{ message }}
+  </div>
+
+  <div class="error-message" *ngIf="erreur">
+    {{ erreur }}
+  </div>
+
+
+  <!-- TITRE ET FILTRES -->
+  <section class="reservations-content">
+
+    <div class="section-heading">
+
+      <div>
+        <h2>Mes rendez-vous</h2>
+        <p>Liste des réservations de vos salons.</p>
+      </div>
+
+      <button
+        class="refresh-button"
+        type="button"
+        (click)="chargerReservations()"
+        [disabled]="chargement">
+
+        ↻ Actualiser
+
+      </button>
+
+    </div>
+
+
+    <!-- FILTRES -->
+    <div class="filters">
+
+      <button
+        [class.active]="filtre === 'TOUS'"
+        (click)="changerFiltre('TOUS')">
+
+        Toutes
+        ({{ reservations.length }})
+
+      </button>
+
+      <button
+        [class.active]="filtre === 'EN_ATTENTE'"
+        (click)="changerFiltre('EN_ATTENTE')">
+
+        En attente
+        ({{ compter('EN_ATTENTE') }})
+
+      </button>
+
+      <button
+        [class.active]="filtre === 'CONFIRMEE'"
+        (click)="changerFiltre('CONFIRMEE')">
+
+        Confirmées
+        ({{ compter('CONFIRMEE') }})
+
+      </button>
+
+      <button
+        [class.active]="filtre === 'REFUSEE'"
+        (click)="changerFiltre('REFUSEE')">
+
+        Refusées
+        ({{ compter('REFUSEE') }})
+
+      </button>
+
+      <button
+        [class.active]="filtre === 'ANNULEE'"
+        (click)="changerFiltre('ANNULEE')">
+
+        Annulées
+        ({{ compter('ANNULEE') }})
+
+      </button>
+
+    </div>
+
+
+    <!-- CHARGEMENT -->
+    <div class="loading-box" *ngIf="chargement">
+      Chargement des réservations...
+    </div>
+
+
+    <!-- ERREUR -->
+    <div class="empty-box" *ngIf="!chargement && erreur && reservations.length === 0">
+      {{ erreur }}
+
+      <button
+        class="refresh-button"
+        (click)="chargerReservations()">
+
+        Réessayer
+
+      </button>
+    </div>
+
+
+    <!-- LISTE RESERVATIONS -->
+    <div
+      class="reservations-grid"
+      *ngIf="!chargement && reservationsFiltrees.length > 0">
+
+      <article
+        class="reservation-card"
+        *ngFor="let reservation of reservationsFiltrees">
+
+
+        <!-- CARD HEADER -->
+        <div class="reservation-header">
+
+          <div>
+            <span class="reservation-number">
+              Réservation #{{ reservation.id }}
+            </span>
+
+            <h3>{{ reservation.client }}</h3>
+
+            <p>{{ reservation.email }}</p>
+          </div>
+
+          <span
+            class="status"
+            [ngClass]="classeStatut(reservation.statut)">
+
+            {{ libelleStatut(reservation.statut) }}
+
+          </span>
+
+        </div>
+
+
+        <!-- DETAILS -->
+        <div class="reservation-details">
+
+          <div class="detail-item">
+
+            <span>Salon</span>
+
+            <strong>
+              {{ reservation.salon }}
+            </strong>
+
+          </div>
+
+          <div class="detail-item">
+
+            <span>Prestation</span>
+
+            <strong>
+              {{ reservation.prestation }}
+            </strong>
+
+          </div>
+
+          <div class="detail-item">
+
+            <span>Date</span>
+
+            <strong>
+              {{ formatDate(reservation.dateReservation) }}
+            </strong>
+
+          </div>
+
+          <div class="detail-item">
+
+            <span>Heure</span>
+
+            <strong>
+              {{ formatHeure(reservation.heureReservation) }}
+            </strong>
+
+          </div>
+
+          <div class="detail-item">
+
+            <span>Prix</span>
+
+            <strong class="price">
+              {{ reservation.prix }} DT
+            </strong>
+
+          </div>
+
+        </div>
+
+
+        <!-- ACTIONS -->
+        <div
+          class="reservation-actions"
+          *ngIf="reservation.statut === 'EN_ATTENTE'">
+
+          <button
+            type="button"
+            class="confirm-button"
+            (click)="traiterReservation(reservation, 'CONFIRMEE')">
+
+            ✓ Confirmer
+
+          </button>
+
+          <button
+            type="button"
+            class="refuse-button"
+            (click)="traiterReservation(reservation, 'REFUSEE')">
+
+            ✕ Refuser
+
+          </button>
+
+        </div>
+
+
+        <!-- RESERVATION TRAITEE -->
+        <div
+          class="finished-label"
+          *ngIf="reservation.statut !== 'EN_ATTENTE'">
+
+          Cette réservation a été traitée.
+
+        </div>
+
+      </article>
+
+    </div>
+
+
+    <!-- AUCUNE RESERVATION -->
+    <div
+      class="empty-box"
+      *ngIf="!chargement && reservationsFiltrees.length === 0 && !erreur">
+
+      <div class="empty-icon">▦</div>
+
+      <h3>Aucune réservation disponible</h3>
+
+      <p>
+        Il n'y a actuellement aucune réservation dans cette catégorie.
+      </p>
+
+    </div>
+
+  </section>
+
+
+  <!-- FOOTER -->
+  <footer class="page-footer">
+    Tunisia Smart Beauty · Gestion professionnelle des rendez-vous.
+  </footer>
+
+</div>

@@ -1,0 +1,404 @@
+:host {
+  display: block;
+  color: #493b43;
+  background: #fffdfb;
+  font-family: 'Segoe UI', sans-serif;
+}
+
+/* Navbar */
+.navbar {
+  min-height: 76px;
+  padding: 15px 7%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #fff;
+  box-shadow: 0 3px 20px rgba(80, 48, 62, 0.05);
+  position: relative;
+  z-index: 2;
+}
+
+.logo, .footer-logo {
+  text-decoration: none;
+  color: #493b43;
+  font-family: Georgia, serif;
+  font-size: 21px;
+  font-weight: bold;
+}
+
+.logo span:last-child {
+  color: #b66d8b;
+}
+
+.logo-icon {
+  color: #bd7893;
+  margin-right: 5px;
+}
+
+.nav-links {
+  display: flex;
+  gap: 30px;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #75666e;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.nav-links a:hover,
+.nav-links a.active {
+  color: #b66d8b;
+}
+
+.nav-links a.active {
+  font-weight: 700;
+}
+
+.login-btn {
+  text-decoration: none;
+  background: #b66d8b;
+  color: white;
+  padding: 11px 23px;
+  border-radius: 25px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.login-btn:hover,
+.primary-btn:hover,
+.cta-btn:hover {
+  background: #96536f;
+  transform: translateY(-2px);
+}
+
+/* Hero */
+.hero {
+  min-height: 390px;
+  padding: 70px 10%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: linear-gradient(120deg, #f9e9ed, #fdf5ed);
+  overflow: hidden;
+  position: relative;
+}
+
+.hero-content {
+  max-width: 650px;
+  position: relative;
+  z-index: 1;
+}
+
+.eyebrow {
+  color: #b66d8b;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 3px;
+}
+
+.hero h1 {
+  font-family: Georgia, serif;
+  font-size: clamp(38px, 5vw, 58px);
+  line-height: 1.2;
+  font-weight: 500;
+  margin: 20px 0;
+}
+
+.hero h1 span,
+.section-heading h2 span {
+  color: #b66d8b;
+  display: block;
+}
+
+.hero p,
+.section-heading p {
+  color: #82737a;
+  line-height: 1.8;
+  font-size: 15px;
+}
+
+.primary-btn {
+  display: inline-block;
+  margin-top: 20px;
+  padding: 14px 25px;
+  background: #b66d8b;
+  color: white;
+  text-decoration: none;
+  border-radius: 30px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+.hero-decoration {
+  color: rgba(182, 109, 139, 0.15);
+  font-size: 230px;
+  margin-right: 5%;
+}
+
+/* Services */
+.services-section {
+  padding: 80px 8%;
+}
+
+.section-heading {
+  text-align: center;
+  max-width: 600px;
+  margin: 0 auto 50px;
+}
+
+.section-heading h2 {
+  font-family: Georgia, serif;
+  font-size: 38px;
+  font-weight: 500;
+  margin: 15px 0;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 30px;
+}
+
+.service-card {
+  background: white;
+  border: 1px solid #f1e6e9;
+  border-radius: 20px;
+  overflow: hidden;
+  box-shadow: 0 8px 30px rgba(80, 48, 62, 0.06);
+  transition: 0.3s;
+}
+
+.service-card:hover {
+  transform: translateY(-7px);
+  box-shadow: 0 15px 35px rgba(80, 48, 62, 0.12);
+}
+
+.service-image {
+  height: 230px;
+  position: relative;
+  overflow: hidden;
+}
+
+.service-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.5s;
+}
+
+.service-card:hover .service-image img {
+  transform: scale(1.05);
+}
+
+.service-emoji {
+  position: absolute;
+  bottom: 15px;
+  left: 20px;
+  background: white;
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 23px;
+  box-shadow: 0 3px 12px rgba(0, 0, 0, 0.1);
+}
+
+.service-content {
+  padding: 25px;
+}
+
+.service-content h3 {
+  font-family: Georgia, serif;
+  font-size: 25px;
+  font-weight: 500;
+  margin: 0 0 12px;
+  color: #493b43;
+}
+
+.description {
+  color: #82737a;
+  font-size: 14px;
+  line-height: 1.7;
+  min-height: 48px;
+}
+
+.prestations {
+  margin-top: 20px;
+  padding: 17px;
+  background: #fdf7f8;
+  border-radius: 12px;
+}
+
+.prestation-label {
+  font-size: 12px;
+  color: #a15f7b;
+  font-weight: 700;
+}
+
+.prestations ul {
+  list-style: none;
+  padding: 0;
+  margin: 12px 0 0;
+}
+
+.prestations li {
+  font-size: 13px;
+  color: #75666e;
+  margin: 9px 0;
+}
+
+.prestations li span {
+  color: #b66d8b;
+  font-weight: bold;
+  margin-right: 7px;
+}
+
+.card-footer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.price {
+  color: #a15f7b;
+  font-size: 14px;
+  font-weight: 700;
+}
+
+.service-btn {
+  text-decoration: none;
+  color: white;
+  background: #b66d8b;
+  padding: 11px 18px;
+  border-radius: 25px;
+  font-size: 13px;
+  transition: 0.3s;
+}
+
+.service-btn:hover {
+  background: #96536f;
+}
+
+/* CTA */
+.cta-section {
+  margin: 20px 8% 70px;
+  padding: 45px;
+  background: linear-gradient(120deg, #f7e6eb, #fdf2e9);
+  border-radius: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 25px;
+}
+
+.cta-section h2 {
+  font-family: Georgia, serif;
+  font-size: 30px;
+  font-weight: 500;
+  margin: 12px 0;
+}
+
+.cta-section p {
+  color: #82737a;
+  font-size: 14px;
+}
+
+.cta-btn {
+  white-space: nowrap;
+  text-decoration: none;
+  background: #b66d8b;
+  color: white;
+  padding: 14px 22px;
+  border-radius: 30px;
+  font-size: 14px;
+  transition: 0.3s;
+}
+
+/* Footer */
+.footer {
+  background: #493b43;
+  color: #f8eaf0;
+  text-align: center;
+  padding: 35px 15px;
+}
+
+.footer-logo {
+  color: #f8eaf0;
+}
+
+.footer p {
+  color: #ddcbd3;
+  font-size: 14px;
+  margin: 12px 0;
+}
+
+.footer span {
+  color: #c9b4be;
+  font-size: 12px;
+}
+
+/* Responsive */
+@media (max-width: 850px) {
+  .navbar {
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .nav-links {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 15px;
+  }
+
+  .services-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .hero-decoration {
+    display: none;
+  }
+
+  .cta-section {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+@media (max-width: 500px) {
+  .hero {
+    padding: 55px 7%;
+  }
+
+  .services-section {
+    padding: 55px 6%;
+  }
+
+  .section-heading h2 {
+    font-size: 30px;
+  }
+
+  .service-image {
+    height: 190px;
+  }
+
+  .cta-section {
+    margin: 10px 5% 45px;
+    padding: 28px 22px;
+  }
+
+  .navbar {
+    padding: 15px 5%;
+  }
+
+  .logo {
+    font-size: 18px;
+  }
+}

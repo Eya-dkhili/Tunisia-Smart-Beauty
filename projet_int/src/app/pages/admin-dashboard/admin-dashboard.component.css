@@ -1,0 +1,589 @@
+
+* {
+  box-sizing: border-box;
+}
+
+.admin-container {
+  display: flex;
+  min-height: 100vh;
+  background: #fff8fa;
+  font-family: 'Segoe UI', sans-serif;
+  color: #352832;
+}
+
+/* SIDEBAR */
+.sidebar {
+  width: 255px;
+  background: white;
+  padding: 30px 20px;
+  display: flex;
+  flex-direction: column;
+  border-right: 1px solid #f3e5eb;
+}
+
+.logo {
+  font-size: 17px;
+  margin-bottom: 55px;
+  color: #9d5372;
+}
+
+.logo span {
+  font-size: 25px;
+  margin-right: 5px;
+}
+
+.menu-title {
+  font-size: 11px;
+  color: #b5a4ad;
+  letter-spacing: 1px;
+  margin-bottom: 15px;
+}
+
+nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+nav button,
+.sidebar-bottom button {
+  border: none;
+  background: transparent;
+  padding: 14px;
+  text-align: left;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 14px;
+  color: #766875;
+  transition: 0.3s;
+}
+
+nav button:hover,
+nav button.active {
+  background: #fceaf1;
+  color: #b45e80;
+}
+
+.menu-icon {
+  margin-right: 12px;
+  font-size: 17px;
+}
+
+.sidebar-bottom {
+  margin-top: auto;
+}
+
+/* MAIN */
+.main-content {
+  flex: 1;
+  padding: 35px;
+  min-width: 0;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.topbar h2 {
+  margin: 0;
+  font-size: 24px;
+}
+
+.topbar p {
+  color: #a18e99;
+  font-size: 13px;
+}
+
+.admin-profile {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.admin-profile strong,
+.admin-profile small {
+  display: block;
+}
+
+.admin-profile small {
+  color: #a18e99;
+  margin-top: 5px;
+}
+
+.avatar {
+  width: 42px;
+  height: 42px;
+  background: #f4d5e1;
+  color: #a34e72;
+  border-radius: 50%;
+  display: grid;
+  place-items: center;
+  font-weight: bold;
+}
+
+/* WELCOME */
+.welcome {
+  background: linear-gradient(120deg, #f8dce7, #fff0f5);
+  padding: 30px;
+  border-radius: 16px;
+  margin-bottom: 30px;
+}
+
+.welcome h1 {
+  color: #914967;
+  margin-top: 0;
+}
+
+.welcome p {
+  color: #8e6e7d;
+  margin-bottom: 0;
+}
+
+/* STATISTICS */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 20px;
+}
+
+.stat-card {
+  background: white;
+  padding: 25px;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px #eacbd633;
+  border: 1px solid #f5e9ee;
+}
+
+.stat-card span {
+  color: #977f8c;
+  font-size: 14px;
+}
+
+.stat-card h2 {
+  color: #b45e80;
+  font-size: 30px;
+  margin: 15px 0 8px;
+}
+
+.stat-card small {
+  color: #b3a4ad;
+}
+
+.content-card {
+  background: white;
+  padding: 30px;
+  border-radius: 15px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 600px) {
+  .sidebar {
+    width: 175px;
+    padding: 15px 10px;
+  }
+
+  .main-content {
+    padding: 15px;
+  }
+
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .topbar {
+    align-items: flex-start;
+    gap: 15px;
+    flex-direction: column;
+  }
+}
+
+/* SECTION HEADING */
+
+.section-heading {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 25px;
+  gap: 15px;
+}
+
+.section-heading h2 {
+  margin-bottom: 8px;
+  color: #493441;
+}
+
+.section-heading p {
+  color: #a18e99;
+  font-size: 13px;
+}
+
+.total-badge {
+  background: #fceaf1;
+  color: #a34e72;
+  padding: 10px 16px;
+  border-radius: 20px;
+  font-size: 13px;
+  white-space: nowrap;
+}
+
+/* TABLE */
+
+.table-responsive {
+  width: 100%;
+  overflow-x: auto;
+}
+
+table {
+  width: 100%;
+  border-collapse: collapse;
+  min-width: 650px;
+}
+
+th {
+  background: #fff5f8;
+  color: #98677d;
+  text-align: left;
+  padding: 17px;
+  font-size: 13px;
+}
+
+td {
+  padding: 18px 17px;
+  border-bottom: 1px solid #f3e9ed;
+  font-size: 13px;
+  color: #655461;
+}
+
+.action-btn {
+  background: #fceaf1;
+  color: #a34e72;
+  border: none;
+  padding: 9px 13px;
+  border-radius: 7px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+.action-btn:hover {
+  background: #f3d3e0;
+}
+
+/* STATUS */
+
+.status {
+  display: inline-block;
+  padding: 6px 11px;
+  border-radius: 20px;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.active-status {
+  background: #e5f6ed;
+  color: #278253;
+}
+
+.blocked-status {
+  background: #fde8e8;
+  color: #bd4444;
+}
+
+.pending-status {
+  background: #fff1d9;
+  color: #b77a20;
+}
+
+/* SALONS */
+
+.salons-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.salon-card {
+  background: white;
+  padding: 22px;
+  border: 1px solid #f3e5eb;
+  border-radius: 15px;
+  box-shadow: 0 4px 15px #eacbd622;
+}
+
+.salon-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.salon-icon {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  background: #fceaf1;
+  color: #b45e80;
+  border-radius: 12px;
+  font-size: 23px;
+}
+
+.salon-card h3 {
+  color: #914967;
+  margin: 20px 0 12px;
+}
+
+.salon-card p {
+  color: #95818d;
+  font-size: 13px;
+  margin: 9px 0;
+}
+
+.salon-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 22px;
+}
+
+.accept-btn,
+.refuse-btn {
+  flex: 1;
+  border: none;
+  padding: 10px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  font-size: 12px;
+}
+
+.accept-btn {
+  background: #e5f6ed;
+  color: #278253;
+}
+
+.refuse-btn {
+  background: #fde8e8;
+  color: #bd4444;
+}
+
+.accept-btn:hover {
+  background: #ccebd9;
+}
+
+.refuse-btn:hover {
+  background: #f8d1d1;
+}
+
+@media (max-width: 1000px) {
+  .salons-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .salons-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .section-heading {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+/* RESERVATION DASHBOARD */
+
+.reservation-stats {
+  margin-bottom: 25px;
+}
+
+.reservation-table {
+  padding: 20px;
+}
+
+.reservation-actions {
+  display: flex;
+  gap: 7px;
+  min-width: 150px;
+}
+
+.reservation-actions button {
+  padding: 8px 10px;
+  font-size: 11px;
+}
+
+.finished-label {
+  color: #a18e99;
+  font-size: 12px;
+}
+
+.empty-message {
+  text-align: center;
+  padding: 35px;
+  color: #a18e99;
+}
+
+.reservation-table th {
+  white-space: nowrap;
+}
+
+.reservation-table td {
+  white-space: nowrap;
+}
+
+/* SECURITY */
+
+.security-banner {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  padding: 25px;
+  background: linear-gradient(120deg, #f8dce7, #fff0f5);
+  border-radius: 15px;
+  margin-bottom: 25px;
+}
+
+.security-icon {
+  width: 50px;
+  height: 50px;
+  display: grid;
+  place-items: center;
+  background: white;
+  border-radius: 12px;
+  font-size: 23px;
+}
+
+.security-banner h3 {
+  color: #914967;
+  margin: 0 0 8px;
+}
+
+.security-banner p {
+  color: #8e6e7d;
+  font-size: 13px;
+  margin: 0;
+}
+
+/* ROLES */
+
+.roles-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+  margin-bottom: 25px;
+}
+
+.role-card {
+  background: white;
+  border: 1px solid #f3e5eb;
+  border-radius: 15px;
+  padding: 23px;
+  box-shadow: 0 4px 15px #eacbd622;
+}
+
+.role-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.role-icon {
+  width: 45px;
+  height: 45px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: #fceaf1;
+  color: #b45e80;
+  font-size: 23px;
+}
+
+.role-badge {
+  background: #fceaf1;
+  color: #a34e72;
+  padding: 7px 10px;
+  border-radius: 20px;
+  font-size: 10px;
+  font-weight: bold;
+}
+
+.role-card h3 {
+  color: #914967;
+  margin: 20px 0 8px;
+}
+
+.role-description {
+  color: #95818d;
+  font-size: 13px;
+  min-height: 40px;
+  line-height: 1.6;
+}
+
+.permissions {
+  border-top: 1px solid #f3e9ed;
+  margin-top: 20px;
+  padding-top: 15px;
+}
+
+.permissions h4 {
+  color: #493441;
+  font-size: 13px;
+  margin-bottom: 15px;
+}
+
+.permission-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  color: #766875;
+  font-size: 12px;
+  margin-bottom: 12px;
+}
+
+.check-icon {
+  color: #278253;
+  font-weight: bold;
+}
+
+.security-info {
+  line-height: 1.8;
+}
+
+.security-info h3 {
+  color: #914967;
+}
+
+.security-info p,
+.security-info li {
+  color: #95818d;
+  font-size: 13px;
+}
+
+.security-info ul {
+  padding-left: 20px;
+}
+
+@media (max-width: 1000px) {
+  .roles-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 650px) {
+  .roles-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .security-banner {
+    align-items: flex-start;
+  }
+}
+

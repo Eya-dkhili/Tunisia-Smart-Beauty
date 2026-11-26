@@ -1,0 +1,188 @@
+
+<!-- NAVBAR -->
+<header class="navbar">
+  <a routerLink="/accueil" class="logo">
+    <span class="logo-icon">✿</span>
+    Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <nav>
+    <a routerLink="/accueil">Accueil</a>
+    <a routerLink="/salons" class="active">Nos salons</a>
+    <a routerLink="/login">Connexion</a>
+    <a routerLink="/register" class="register-link">S'inscrire</a>
+  </nav>
+</header>
+
+<!-- CHARGEMENT -->
+<div class="loading-section" *ngIf="chargement">
+  <p>Chargement des informations du salon...</p>
+</div>
+
+<!-- ERREUR -->
+<div class="error-section" *ngIf="erreur">
+  <h2>{{ erreur }}</h2>
+  <a routerLink="/salons">Retour aux salons</a>
+</div>
+
+<!-- CONTENU DU SALON -->
+<ng-container *ngIf="!chargement && !erreur && salon">
+
+  <!-- HERO -->
+  <section class="details-hero">
+    <div class="hero-content">
+
+      <a routerLink="/salons" class="back-link">
+        ← Retour aux salons
+      </a>
+
+      <span class="eyebrow">DÉCOUVREZ VOTRE ESPACE BEAUTÉ</span>
+
+      <h1>{{ salon.nom }}</h1>
+
+      <p class="hero-description">
+        Un espace dédié à votre beauté, votre bien-être et votre détente.
+      </p>
+
+      <div class="hero-meta">
+        <span>📍 {{ salon.adresse }}, {{ salon.ville }}</span>
+        <span>⭐ {{ salon.note || 0 }}/5</span>
+        <span>{{ salon.service }}</span>
+      </div>
+
+    </div>
+
+    <div class="hero-decoration">
+      <span>✿</span>
+      <small>BEAUTÉ & BIEN-ÊTRE</small>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section class="about-section">
+
+    <div class="section-heading">
+      <span class="section-label">BIENVENUE CHEZ NOUS</span>
+      <h2>Un moment rien que pour vous</h2>
+    </div>
+
+    <p class="about-description">
+      Découvrez nos prestations beauté et profitez d'un moment
+      de détente dans un cadre agréable. Notre objectif est de vous
+      offrir une expérience unique adaptée à vos envies.
+    </p>
+
+    <div class="advantages">
+
+      <div class="advantage">
+        <span>✧</span>
+        <h3>Qualité</h3>
+        <p>Des prestations adaptées à vos besoins.</p>
+      </div>
+
+      <div class="advantage">
+        <span>♡</span>
+        <h3>Bien-être</h3>
+        <p>Un espace pensé pour votre confort.</p>
+      </div>
+
+      <div class="advantage">
+        <span>✿</span>
+        <h3>Beauté</h3>
+        <p>Prenez du temps pour vous.</p>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- SERVICES -->
+  <section class="services-section">
+
+    <div class="section-heading">
+      <span class="section-label">NOS PRESTATIONS</span>
+      <h2>Choisissez votre service</h2>
+      <p>Découvrez les prestations proposées par ce salon.</p>
+    </div>
+
+    <!-- SERVICES DISPONIBLES -->
+    <div class="services-grid" *ngIf="services.length > 0">
+
+      <article class="service-card" *ngFor="let service of services">
+
+        <div class="service-top">
+          <span class="service-icon">✧</span>
+
+          <span class="service-duration">
+            ⏱ {{ service.dureeMinutes }} min
+          </span>
+        </div>
+
+        <h3>{{ service.nom }}</h3>
+
+        <p class="service-description">
+          {{ service.description }}
+        </p>
+
+        <div class="service-bottom">
+
+          <div>
+            <small>Prix</small>
+            <strong>{{ service.prix }} DT</strong>
+          </div>
+
+          <button
+            [routerLink]="['/reservation', salon.id]"
+            [queryParams]="{ prestationId: service.id }">
+
+            Choisir <span>→</span>
+
+          </button>
+
+        </div>
+
+      </article>
+
+    </div>
+
+    <!-- AUCUNE PRESTATION -->
+    <div class="empty-services" *ngIf="services.length === 0">
+
+      <h3>Aucune prestation disponible</h3>
+
+      <p>
+        Ce salon n'a pas encore ajouté ses prestations.
+        Revenez plus tard !
+      </p>
+
+    </div>
+
+  </section>
+
+  <!-- CTA -->
+  <section class="booking-cta">
+
+    <div>
+      <span class="section-label">VOTRE MOMENT VOUS ATTEND</span>
+      <h2>Prête à prendre soin de vous ?</h2>
+      <p>Choisissez une prestation pour réserver votre rendez-vous.</p>
+    </div>
+
+    <a routerLink="/reservation" *ngIf="false">
+      Prendre rendez-vous →
+    </a>
+
+  </section>
+
+</ng-container>
+
+<!-- FOOTER -->
+<footer class="footer">
+
+  <a routerLink="/accueil" class="logo">
+    <span class="logo-icon">✿</span>
+    Tunisia <strong>Smart Beauty</strong>
+  </a>
+
+  <p>© 2026 Tunisia Smart Beauty. Tous droits réservés.</p>
+
+</footer>
