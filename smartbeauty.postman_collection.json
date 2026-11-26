@@ -1,0 +1,917 @@
+{
+  "info": {
+    "_postman_id": "b3e4cee5-304f-48a8-88a8-715a54914898",
+    "name": "New Collection",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "59162047",
+    "_collection_link": "https://go.postman.co/collection/59162047-b3e4cee5-304f-48a8-88a8-715a54914898?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "cree util",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"prenom\": \"Eya\",\r\n  \"nom\": \"Dkhili\",\r\n  \"email\": \"eya.test@gmail.com\",\r\n  \"telephone\": \"20123456\",\r\n  \"motDePasse\": \"EyaTest123\",\r\n  \"role\": \"CLIENT\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/auth/inscription",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "auth",
+            "inscription"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test connexion",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "test reserv",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "creer reser",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"salonId\": 1,\r\n  \"prestationId\": 1,\r\n  \"dateReservation\": \"2026-11-25\",\r\n  \"heureReservation\": \"10:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/client/reservations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "client",
+            "reservations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/client/reservations/1/annuler",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "client",
+            "reservations",
+            "1",
+            "annuler"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "test pro",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"prenom\": \"Test\",\r\n  \"nom\": \"Professionnel\",\r\n  \"email\": \"pro.test@gmail.com\",\r\n  \"telephone\": \"22123456\",\r\n  \"motDePasse\": \"ProTest123\",\r\n  \"role\": \"PROFESSIONNEL\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/auth/inscription",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "auth",
+            "inscription"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "conn pro",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"email\": \"pro.test@gmail.com\",\r\n  \"motDePasse\": \"ProTest123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/auth/connexion",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "auth",
+            "connexion"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "consulter pro",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value": " {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/professionnel/reservations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "professionnel",
+            "reservations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cree salon",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom\": \"Eya Beauty\",\r\n  \"ville\": \"Tunis\",\r\n  \"adresse\": \"Centre ville, Tunis\",\r\n  \"note\": 4.5,\r\n  \"service\": \"Coiffure et soins\",\r\n  \"emoji\": \"💅\",\r\n  \"image\": \"\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/salons/ajouter/13",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "salons",
+            "ajouter",
+            "13"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ajouter prestation",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n  \"nom\": \"Soin visage\",\r\n  \"prix\": 50,\r\n  \"dureeMinutes\": 45,\r\n  \"description\": \"Soin du visage relaxant\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/prestations/ajouter/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "prestations",
+            "ajouter",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cree reservation",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\"CONFIRMEE\"",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/professionnel/reservations/3/statut",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "professionnel",
+            "reservations",
+            "3",
+            "statut"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cree autre reser",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"salonId\": 4,\r\n    \"prestationId\": 2,\r\n    \"dateReservation\": \"2026-11-27\",\r\n    \"heureReservation\": \"11:00\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/client/reservations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "client",
+            "reservations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "refus res",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "\"REFUSEE\"",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/professionnel/reservations/4/statut",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "professionnel",
+            "reservations",
+            "4",
+            "statut"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "cree admin",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"prenom\": \"Admin\",\r\n    \"nom\": \"Test\",\r\n    \"email\": \"admin.test@gmail.com\",\r\n    \"telephone\": \"20000000\",\r\n    \"motDePasse\": \"AdminTest123\",\r\n    \"role\": \"CLIENT\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/auth/inscription",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "auth",
+            "inscription"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"email\": \"admin.test@gmail.com\",\r\n    \"motDePasse\": \"AdminTest123\"\r\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/auth/connexion",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "auth",
+            "connexion"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "consulter res par admin",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/admin/reservations",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "reservations"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "res par id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/admin/reservations/3",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "reservations",
+            "3"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "afficher uti",
+      "protocolProfileBehavior": {
+        "disableBodyPruning": true
+      },
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/admin/utilisateurs",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "utilisateurs"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "utilisateur id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/admin/utilisateurs/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "utilisateurs",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "supp ut",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/admin/utilisateurs/1",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "utilisateurs",
+            "1"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aff salon",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/admin/salons",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "salons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "aff salon par id",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/admin/salons/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "salons",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "New Request",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "DELETE",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/admin/salons/2",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "admin",
+            "salons",
+            "2"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "salon pro",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8081/api/professionnel/salons",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "professionnel",
+            "salons"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "modifier salon",
+      "request": {
+        "auth": {
+          "type": "bearer",
+          "bearer": [
+            {
+              "key": "token",
+              "value":  {
+              "key": "token",
+              "value": {{JWT_TOKEN}},
+              "type": "string"
+            },
+              "type": "string"
+            }
+          ]
+        },
+        "method": "PUT",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\r\n    \"nom\": \"Eya Beauty\",\r\n    \"ville\": \"Tunis\",\r\n    \"adresse\": \"Centre ville, Tunis\",\r\n    \"service\": \"Coiffure et soins\",\r\n    \"emoji\": \"💅\",\r\n    \"image\": \"\"\r\n}\r\n",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
+        },
+        "url": {
+          "raw": "http://localhost:8081/api/professionnel/salons/4",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8081",
+          "path": [
+            "api",
+            "professionnel",
+            "salons",
+            "4"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "ajouter pres",
+      "request": {
+        "method": "GET",
+        "header": []
+      },
+      "response": []
+    }
+  ]
+}
